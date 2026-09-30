@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1411" />
+    <meta name="description" content="一個簡潔好用的記分板。新增組別、即時記分，並自由匯入或匯出資料。" />
+    <title>記分板 · Scoreboard</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="icon-minus" viewBox="0 0 24 24"><path d="M5 12h14" /></symbol>
+      <symbol id="icon-edit" viewBox="0 0 24 24"><path d="m15.5 5.5 3 3M4 20l4.5-1 10-10a2.12 2.12 0 0 0-3-3l-10 10L4 20Z" /></symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3" /></symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V4m0 0 4 4m-4-4L8 8M4 17v3h16v-3" /></symbol>
+      <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 4h4m4 3-1 13H7L6 7m4 4v5m4-5v5" /></symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" /></symbol>
+      <symbol id="icon-trophy" viewBox="0 0 24 24"><path d="M8 21h8m-4-4v4M7 3h10v7a5 5 0 0 1-10 0V3ZM7 5H4v3a4 4 0 0 0 4 4m9-7h3v3a4 4 0 0 1-4 4" /></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19" /></symbol>
+    </svg>
+
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="Scoreboard 記分板">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div><strong>SCOREBOARD</strong><small>讓每一分都有跡可循</small></div>
+        </div>
+        <div class="topbar-right"><span class="status-dot"></span><span id="save-status">已自動儲存</span></div>
+      </header>
+
+      <main class="workspace">
+        <aside class="sidebar" aria-label="記分板工具">
+          <div class="sidebar-heading">工作空間 <span>01 / SCORE</span></div>
+          <div class="sidebar-card">
+            <span class="eyebrow">目前記分板</span>
+            <h2 id="sidebar-title">活動記分板</h2>
+            <button class="text-button" id="rename-board-side" type="button">編輯名稱 <svg><use href="#icon-arrow" /></svg></button>
+          </div>
+          <div class="sidebar-section">
+            <span class="sidebar-label">資料管理</span>
+            <button class="sidebar-action" id="export-button" type="button"><svg><use href="#icon-download" /></svg><span>匯出記分板</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
+            <button class="sidebar-action" id="import-button" type="button"><svg><use href="#icon-upload" /></svg><span>匯入記分板</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
+            <input id="import-file" type="file" accept=".json,application/json" hidden />
+          </div>
+          <div class="sidebar-note"><span class="note-spark">✳</span><p>分數會自動儲存在這台裝置。想換裝置使用？匯出檔案後再匯入即可。</p></div>
+          <div class="sidebar-footer">用每一分，記錄精彩時刻 <span>↗</span></div>
+        </aside>
+
+        <section class="main-content" aria-labelledby="board-title">
+          <div class="breadcrumb"><span>我的工作空間</span><span class="breadcrumb-divider">/</span><strong>記分板</strong></div>
+          <div class="page-heading">
+            <div>
+              <div class="section-kicker"><span class="kicker-line"></span> LIVE SCOREBOARD</div>
+              <div class="title-row"><h1 id="board-title">活動記分板</h1><button class="icon-button title-edit" id="rename-board" type="button" aria-label="修改記分板名稱" title="修改記分板名稱"><svg><use href="#icon-edit" /></svg></button></div>
+              <p class="page-subtitle">掌握每個組別的表現，讓每一刻都精彩。</p>
+            </div>
+            <button class="primary-button heading-add" id="add-group" type="button"><svg><use href="#icon-plus" /></svg> 新增組別</button>
+          </div>
+
+          <div class="overview" aria-label="記分概況">
+            <div class="overview-cell"><span class="overview-label">組別總數</span><div><strong id="group-count">0</strong><span>組參與中</span></div></div>
+            <div class="overview-cell"><span class="overview-label">目前最高分</span><div><strong id="highest-score">0</strong><span>分</span></div></div>
+            <div class="overview-cell leader-cell"><span class="overview-label">領先組別</span><div><svg><use href="#icon-trophy" /></svg><strong id="leader-name">尚無組別</strong></div></div>
+            <div class="overview-deco" aria-hidden="true">↗</div>
+          </div>
+
+          <div class="list-heading"><div><h2>組別排行</h2><span id="group-summary">新增組別，開始記錄分數</span></div><button class="subtle-button" id="reset-scores" type="button">全部歸零</button></div>
+          <div id="groups" class="groups-grid" aria-live="polite"></div>
+          <div id="empty-state" class="empty-state" hidden><div class="empty-symbol">＋</div><h3>從第一個組別開始</h3><p>建立組別後，就可以馬上開始計分。</p><button class="primary-button" id="add-group-empty" type="button"><svg><use href="#icon-plus" /></svg> 新增組別</button></div>
+          <footer class="main-footer"><span>GOOD GAME, GREAT MOMENTS.</span><span>資料僅儲存在你的瀏覽器中</span></footer>
+        </section>
+      </main>
+    </div>
+
+    <template id="group-template">
+      <article class="group-card">
+        <div class="card-top"><span class="rank-badge"></span><div class="card-actions"><button class="card-icon rename-group" type="button" aria-label="修改組別名稱" title="修改組別名稱"><svg><use href="#icon-edit" /></svg></button><button class="card-icon delete-group" type="button" aria-label="刪除組別" title="刪除組別"><svg><use href="#icon-trash" /></svg></button></div></div>
+        <div class="card-main"><div class="team-avatar" aria-hidden="true"></div><div><span class="team-caption">TEAM</span><h3 class="group-name"></h3></div></div>
+        <div class="score-area"><div><span class="score-caption">目前分數</span><button class="score-value" type="button" title="直接設定分數" aria-label="直接設定分數"></button></div><span class="score-unit">PTS</span></div>
+        <div class="score-controls"><button class="score-button minus" type="button" aria-label="減一分"><svg><use href="#icon-minus" /></svg><span>減 1 分</span></button><button class="score-button plus" type="button" aria-label="加一分"><svg><use href="#icon-plus" /></svg><span>加 1 分</span></button></div>
+      </article>
+    </template>
+
+    <dialog id="input-dialog" class="modal"><form method="dialog" id="input-form"><div class="modal-head"><div><span class="eyebrow">SCOREBOARD</span><h2 id="input-title"></h2></div><button type="button" class="modal-close" data-close aria-label="關閉"><svg><use href="#icon-close" /></svg></button></div><p id="input-description" class="modal-description"></p><label id="input-label" for="input-value"></label><input id="input-value" type="text" autocomplete="off" maxlength="40" required /><p id="input-error" class="form-error" aria-live="polite"></p><div class="modal-buttons"><button type="button" class="secondary-button" data-close>取消</button><button class="primary-button" type="submit" id="input-submit">儲存</button></div></form></dialog>
+    <dialog id="confirm-dialog" class="modal"><div class="modal-head"><div><span class="eyebrow">請確認</span><h2 id="confirm-title"></h2></div><button type="button" class="modal-close" data-confirm-cancel aria-label="關閉"><svg><use href="#icon-close" /></svg></button></div><p id="confirm-description" class="modal-description"></p><div class="modal-buttons"><button type="button" class="secondary-button" data-confirm-cancel>取消</button><button type="button" class="danger-button" id="confirm-accept">確認</button></div></dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
