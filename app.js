@@ -279,5 +279,6 @@
   });
 
   i18n.applyLanguage();
+  $('#save-status').textContent = t('saved');
   render();
 })();
