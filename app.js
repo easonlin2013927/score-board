@@ -22,7 +22,7 @@
     return {
       version: 1,
       title: '活動記分板',
-      groups: ['綠光隊', '森林隊', '青葉隊'].map((name) => ({ id: newId(), name, score: 0 })),
+      groups: [],
       updatedAt: new Date().toISOString(),
     };
   }
