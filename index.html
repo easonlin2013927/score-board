@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./github-link.css" />
     <link rel="stylesheet" href="./language.css" />
+    <link rel="stylesheet" href="./features.css" />
     <script src="./i18n.js" defer></script>
     <script src="./app.js" defer></script>
   </head>
@@ -46,9 +47,11 @@
           <div class="sidebar-section">
             <span class="sidebar-label" data-i18n="dataManagement">資料管理</span>
             <button class="sidebar-action" id="export-button" type="button"><svg><use href="#icon-download" /></svg><span data-i18n="exportBoard">匯出記分板</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
+            <button class="sidebar-action" id="export-image" type="button"><svg><use href="#icon-download" /></svg><span data-i18n="exportImage">匯出成績圖片</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
             <button class="sidebar-action" id="import-button" type="button"><svg><use href="#icon-upload" /></svg><span data-i18n="importBoard">匯入記分板</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
             <input id="import-file" type="file" accept=".json,application/json" hidden />
           </div>
+          <button class="sidebar-action presentation-launch" id="open-presentation" type="button"><svg><use href="#icon-trophy" /></svg><span data-i18n="presentationMode">全螢幕展示</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
           <div class="sidebar-note"><span class="note-spark">✳</span><p data-i18n="storageNote">分數會自動儲存在這台裝置。想換裝置使用？匯出檔案後再匯入即可。</p></div>
           <a class="sidebar-github" href="https://github.com/easonlin2013927/score-board" target="_blank" rel="noopener noreferrer" aria-label="在新分頁開啟 GitHub 原始碼"><span class="github-dot" aria-hidden="true">GH</span><span data-i18n="githubLink">前往 GitHub 原始碼</span><svg><use href="#icon-arrow" /></svg></a>
           <div class="sidebar-footer"><span data-i18n="sidebarFooter">用每一分，記錄精彩時刻</span> <span>↗</span></div>
@@ -72,6 +75,12 @@
             <div class="overview-deco" aria-hidden="true">↗</div>
           </div>
 
+          <section class="round-panel" aria-labelledby="round-heading">
+            <div class="round-panel-heading"><div><span class="section-kicker" data-i18n="gameSession">活動進行中</span><h2 id="round-heading"><span data-i18n="roundLabel">第</span> <span id="round-number">1</span> <span data-i18n="roundUnit">回合</span></h2></div><button class="subtle-button" id="next-round" type="button" data-i18n="nextRound">開始下一回合</button></div>
+            <div class="timer-line"><div class="timer-clock" id="timer-display" role="timer" aria-live="off">05:00</div><div class="timer-actions"><label for="timer-minutes" data-i18n="timerMinutes">每回合分鐘數</label><input id="timer-minutes" type="number" min="1" max="180" step="1" value="5" inputmode="numeric" /><button class="primary-button" id="timer-toggle" type="button" data-i18n="timerStart">開始計時</button><button class="subtle-button" id="timer-reset" type="button" data-i18n="timerReset">重設計時器</button></div></div>
+            <div id="round-history" class="round-history"></div>
+          </section>
+
           <div class="list-heading"><div><h2 data-i18n="groupRanking">組別排行</h2><span id="group-summary">新增組別，開始記錄分數</span></div><button class="subtle-button" id="reset-scores" type="button" data-i18n="resetAll">全部歸零</button></div>
           <div id="groups" class="groups-grid" aria-live="polite"></div>
           <div id="empty-state" class="empty-state" hidden><div class="empty-symbol">＋</div><h3 data-i18n="emptyTitle">從第一個組別開始</h3><p data-i18n="emptyDescription">建立組別後，就可以馬上開始計分。</p><button class="primary-button" id="add-group-empty" type="button"><svg><use href="#icon-plus" /></svg><span data-i18n="addGroup">新增組別</span></button></div>
@@ -79,6 +88,12 @@
         </section>
       </main>
     </div>
+
+    <section id="presentation-view" class="presentation-view" aria-labelledby="presentation-title" hidden>
+      <header class="presentation-header"><div><span class="section-kicker">LIVE SCOREBOARD</span><h2 id="presentation-title"></h2><p id="presentation-round"></p></div><button class="subtle-button" id="close-presentation" type="button" data-i18n="exitPresentation">結束展示</button></header>
+      <div class="presentation-meta"><div><span data-i18n="presentationTimer">回合倒數</span><strong id="presentation-timer">05:00</strong></div><button class="primary-button" id="presentation-timer-toggle" type="button" data-i18n="timerStart">開始計時</button></div>
+      <div id="presentation-groups" class="presentation-groups"></div>
+    </section>
 
     <template id="group-template">
       <article class="group-card">

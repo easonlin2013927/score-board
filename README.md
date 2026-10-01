@@ -24,4 +24,6 @@
 
 ![Instant groups, live scoring, JSON backup and responsive layout](./docs/readme-features.svg)
 
+<p align="center">Now with full screen presentation, a round timer, round-by-round scores, and PNG results export.</p>
+
 <p align="center">Documentation and the app are available in Traditional Chinese, Simplified Chinese, English, and Japanese. Choose the app language from the selector in the top bar.</p>

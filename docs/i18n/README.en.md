@@ -21,6 +21,9 @@
 | 🏆 **See the ranking** | Groups are sorted by score. The overview shows the group count, highest score, and leader. |
 | 🧹 **Manage the board** | Rename the board, delete groups, or reset all scores after confirmation. |
 | 📦 **Import and export** | Download a JSON backup or import one on another browser or device. Importing asks before replacing current data. |
+| 🖥️ **Full screen display** | Show teams, total scores, and the round timer in a large display. |
+| ⏱️ **Timer and rounds** | Set minutes per round, start or pause the timer, and review scores from earlier rounds. |
+| 🖼️ **Results image** | Export a PNG image to share the final ranking. |
 | 📱 **Use any screen** | The dark layout adapts to desktop and mobile screens. |
 
 ## 🎮 Get started
@@ -71,6 +74,7 @@ score-board/
 ├─ styles.css         # Main and responsive styles
 ├─ github-link.css    # GitHub button in the sidebar
 ├─ language.css       # Language selector styles
+├─ features.css       # Timer and display styles
 ├─ i18n.js            # Interface text in four languages
 ├─ app.js             # Scoring, storage, import, and export
 ├─ favicon.svg        # Site icon
