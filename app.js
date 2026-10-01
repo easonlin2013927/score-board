@@ -94,7 +94,7 @@
     const tied = sorted.filter((group) => group.score === highest);
     $('#highest-score').textContent = highest.toLocaleString(i18n.language);
     $('#leader-name').textContent = !sorted.length ? t('noGroups') : highest === 0 && tied.length === sorted.length ? t('noLeader') : tied.length > 1 ? t('tied', { count: tied.length }) : tied[0].name;
-    $('#group-summary').textContent = board.groups.length ? t('groupSummary', { count: board.groups.length }) : t('groupSummaryEmpty');
+    $('#group-summary').textContent = board.groups.length ? t(board.groups.length === 1 ? 'groupSummaryOne' : 'groupSummary', { count: board.groups.length }) : t('groupSummaryEmpty');
     $('#reset-scores').disabled = !board.groups.some((group) => group.score !== 0);
     $('#empty-state').hidden = board.groups.length > 0;
     groupsElement.replaceChildren();
@@ -272,6 +272,8 @@
 
   $('#language-select').addEventListener('change', (event) => {
     i18n.setLanguage(event.target.value);
+    clearTimeout(toastTimer);
+    $('#toast').classList.remove('show');
     $('#save-status').textContent = t(storageFailed ? 'saveFailed' : 'saved');
     render();
   });
