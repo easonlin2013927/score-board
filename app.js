@@ -181,12 +181,10 @@
     save(); render(); showToast('記分板名稱已更新');
   }
 
-  async function addGroup() {
+  function addGroup() {
     if (board.groups.length >= MAX_GROUPS) { showToast(`最多只能建立 ${MAX_GROUPS} 個組別。`); return; }
-    const name = await askInput({ title: '新增組別', description: '加入新的參賽組別，接著就能開始計分。', label: '組別名稱', value: '', submit: '建立組別', validate: validateName });
-    if (name === null) return;
-    board.groups.push({ id: newId(), name, score: 0 });
-    save(); render(); showToast(`已新增「${name}」`);
+    board.groups.push({ id: newId(), name: '新的組別', score: 0 });
+    save(); render(); showToast('已新增「新的組別」，可點鉛筆修改名稱');
   }
 
   $('#rename-board').addEventListener('click', renameBoard);
