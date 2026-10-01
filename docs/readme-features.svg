@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="258" viewBox="0 0 1200 258" role="img" aria-labelledby="title desc">
+  <title id="title">Four scoreboard highlights</title>
+  <desc id="desc">Colorful cards for instant groups, score control, JSON backup and responsive layout.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102118"/><stop offset="1" stop-color="#101b24"/></linearGradient>
+  </defs>
+  <rect width="1200" height="258" rx="24" fill="url(#bg)"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <g transform="translate(22 22)"><rect width="272" height="214" rx="18" fill="#233d29" stroke="#5e9659"/><circle cx="44" cy="44" r="23" fill="#b9ef7d"/><path d="M44 34v20m-10-10h20" stroke="#234027" stroke-width="4" stroke-linecap="round"/><text x="20" y="106" fill="#a9de8c" font-size="13" font-weight="700" letter-spacing="2">01 / CREATE</text><text x="20" y="146" fill="#f2faed" font-size="22" font-weight="700">INSTANT GROUPS</text><text x="20" y="181" fill="#b9ceb9" font-size="14">Start empty. Add in one click.</text></g>
+    <g transform="translate(317 22)"><rect width="272" height="214" rx="18" fill="#1d3c3e" stroke="#4c8c94"/><circle cx="44" cy="44" r="23" fill="#8de3df"/><path d="M35 44h18m-9-9v18" stroke="#215054" stroke-width="4" stroke-linecap="round"/><text x="20" y="106" fill="#9cddd7" font-size="13" font-weight="700" letter-spacing="2">02 / SCORE</text><text x="20" y="146" fill="#f0fafa" font-size="22" font-weight="700">LIVE CONTROLS</text><text x="20" y="181" fill="#bbd1d0" font-size="14">Tap to update every point.</text></g>
+    <g transform="translate(612 22)"><rect width="272" height="214" rx="18" fill="#403029" stroke="#a66e56"/><circle cx="44" cy="44" r="23" fill="#ffca91"/><path d="M44 33v19m-7-7 7 7 7-7M34 57h20" fill="none" stroke="#633d2c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><text x="20" y="106" fill="#f7ba8d" font-size="13" font-weight="700" letter-spacing="2">03 / BACKUP</text><text x="20" y="146" fill="#fff4eb" font-size="22" font-weight="700">JSON IMPORT</text><text x="20" y="181" fill="#e0c6ba" font-size="14">Keep your scores portable.</text></g>
+    <g transform="translate(907 22)"><rect width="272" height="214" rx="18" fill="#302947" stroke="#7964aa"/><circle cx="44" cy="44" r="23" fill="#c9adfb"/><rect x="34" y="31" width="20" height="27" rx="3" fill="none" stroke="#4b3d71" stroke-width="3"/><circle cx="44" cy="53" r="1.5" fill="#4b3d71"/><text x="20" y="106" fill="#ceb6fb" font-size="13" font-weight="700" letter-spacing="2">04 / DISPLAY</text><text x="20" y="146" fill="#f6f0ff" font-size="22" font-weight="700">ANY SCREEN</text><text x="20" y="181" fill="#cec2df" font-size="14">Desktop and mobile ready.</text></g>
+  </g>
+</svg>
