@@ -9,6 +9,8 @@
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./github-link.css" />
+    <link rel="stylesheet" href="./language.css" />
+    <script src="./i18n.js" defer></script>
     <script src="./app.js" defer></script>
   </head>
   <body>
@@ -28,52 +30,52 @@
       <header class="topbar">
         <div class="brand" aria-label="Scoreboard 記分板">
           <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-          <div><strong>SCOREBOARD</strong><small>讓每一分都有跡可循</small></div>
+          <div><strong>SCOREBOARD</strong><small data-i18n="brandTagline">讓每一分都有跡可循</small></div>
         </div>
-        <div class="topbar-right"><span class="status-dot"></span><span id="save-status">已自動儲存</span></div>
+        <div class="topbar-right"><label class="language-picker" for="language-select"><span aria-hidden="true">🌐</span><select id="language-select" aria-label="選擇語言"><option value="zh-TW">繁體中文</option><option value="zh-CN">简体中文</option><option value="en">English</option><option value="ja">日本語</option></select></label><span class="save-indicator"><span class="status-dot"></span><span id="save-status">已自動儲存</span></span></div>
       </header>
 
       <main class="workspace">
         <aside class="sidebar" aria-label="記分板工具">
-          <div class="sidebar-heading">工作空間 <span>01 / SCORE</span></div>
+          <div class="sidebar-heading"><span data-i18n="workspace">工作空間</span> <span>01 / SCORE</span></div>
           <div class="sidebar-card">
-            <span class="eyebrow">目前記分板</span>
+            <span class="eyebrow" data-i18n="currentBoard">目前記分板</span>
             <h2 id="sidebar-title">活動記分板</h2>
-            <button class="text-button" id="rename-board-side" type="button">編輯名稱 <svg><use href="#icon-arrow" /></svg></button>
+            <button class="text-button" id="rename-board-side" type="button"><span data-i18n="editName">編輯名稱</span> <svg><use href="#icon-arrow" /></svg></button>
           </div>
           <div class="sidebar-section">
-            <span class="sidebar-label">資料管理</span>
-            <button class="sidebar-action" id="export-button" type="button"><svg><use href="#icon-download" /></svg><span>匯出記分板</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
-            <button class="sidebar-action" id="import-button" type="button"><svg><use href="#icon-upload" /></svg><span>匯入記分板</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
+            <span class="sidebar-label" data-i18n="dataManagement">資料管理</span>
+            <button class="sidebar-action" id="export-button" type="button"><svg><use href="#icon-download" /></svg><span data-i18n="exportBoard">匯出記分板</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
+            <button class="sidebar-action" id="import-button" type="button"><svg><use href="#icon-upload" /></svg><span data-i18n="importBoard">匯入記分板</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
             <input id="import-file" type="file" accept=".json,application/json" hidden />
           </div>
-          <div class="sidebar-note"><span class="note-spark">✳</span><p>分數會自動儲存在這台裝置。想換裝置使用？匯出檔案後再匯入即可。</p></div>
-          <a class="sidebar-github" href="https://github.com/easonlin2013927/score-board" target="_blank" rel="noopener noreferrer" aria-label="在新分頁開啟 GitHub 原始碼"><span class="github-dot" aria-hidden="true">GH</span><span>前往 GitHub 原始碼</span><svg><use href="#icon-arrow" /></svg></a>
-          <div class="sidebar-footer">用每一分，記錄精彩時刻 <span>↗</span></div>
+          <div class="sidebar-note"><span class="note-spark">✳</span><p data-i18n="storageNote">分數會自動儲存在這台裝置。想換裝置使用？匯出檔案後再匯入即可。</p></div>
+          <a class="sidebar-github" href="https://github.com/easonlin2013927/score-board" target="_blank" rel="noopener noreferrer" aria-label="在新分頁開啟 GitHub 原始碼"><span class="github-dot" aria-hidden="true">GH</span><span data-i18n="githubLink">前往 GitHub 原始碼</span><svg><use href="#icon-arrow" /></svg></a>
+          <div class="sidebar-footer"><span data-i18n="sidebarFooter">用每一分，記錄精彩時刻</span> <span>↗</span></div>
         </aside>
 
         <section class="main-content" aria-labelledby="board-title">
-          <div class="breadcrumb"><span>我的工作空間</span><span class="breadcrumb-divider">/</span><strong>記分板</strong></div>
+          <div class="breadcrumb"><span data-i18n="myWorkspace">我的工作空間</span><span class="breadcrumb-divider">/</span><strong data-i18n="scoreboard">記分板</strong></div>
           <div class="page-heading">
             <div>
               <div class="section-kicker"><span class="kicker-line"></span> LIVE SCOREBOARD</div>
               <div class="title-row"><h1 id="board-title">活動記分板</h1><button class="icon-button title-edit" id="rename-board" type="button" aria-label="修改記分板名稱" title="修改記分板名稱"><svg><use href="#icon-edit" /></svg></button></div>
-              <p class="page-subtitle">掌握每個組別的表現，讓每一刻都精彩。</p>
+              <p class="page-subtitle" data-i18n="pageSubtitle">掌握每個組別的表現，讓每一刻都精彩。</p>
             </div>
-            <button class="primary-button heading-add" id="add-group" type="button"><svg><use href="#icon-plus" /></svg> 新增組別</button>
+            <button class="primary-button heading-add" id="add-group" type="button"><svg><use href="#icon-plus" /></svg><span data-i18n="addGroup">新增組別</span></button>
           </div>
 
           <div class="overview" aria-label="記分概況">
-            <div class="overview-cell"><span class="overview-label">組別總數</span><div><strong id="group-count">0</strong><span>組參與中</span></div></div>
-            <div class="overview-cell"><span class="overview-label">目前最高分</span><div><strong id="highest-score">0</strong><span>分</span></div></div>
-            <div class="overview-cell leader-cell"><span class="overview-label">領先組別</span><div><svg><use href="#icon-trophy" /></svg><strong id="leader-name">尚無組別</strong></div></div>
+            <div class="overview-cell"><span class="overview-label" data-i18n="totalGroups">組別總數</span><div><strong id="group-count">0</strong><span data-i18n="participating">組參與中</span></div></div>
+            <div class="overview-cell"><span class="overview-label" data-i18n="highestScore">目前最高分</span><div><strong id="highest-score">0</strong><span data-i18n="pointsUnit">分</span></div></div>
+            <div class="overview-cell leader-cell"><span class="overview-label" data-i18n="leadingGroup">領先組別</span><div><svg><use href="#icon-trophy" /></svg><strong id="leader-name">尚無組別</strong></div></div>
             <div class="overview-deco" aria-hidden="true">↗</div>
           </div>
 
-          <div class="list-heading"><div><h2>組別排行</h2><span id="group-summary">新增組別，開始記錄分數</span></div><button class="subtle-button" id="reset-scores" type="button">全部歸零</button></div>
+          <div class="list-heading"><div><h2 data-i18n="groupRanking">組別排行</h2><span id="group-summary">新增組別，開始記錄分數</span></div><button class="subtle-button" id="reset-scores" type="button" data-i18n="resetAll">全部歸零</button></div>
           <div id="groups" class="groups-grid" aria-live="polite"></div>
-          <div id="empty-state" class="empty-state" hidden><div class="empty-symbol">＋</div><h3>從第一個組別開始</h3><p>建立組別後，就可以馬上開始計分。</p><button class="primary-button" id="add-group-empty" type="button"><svg><use href="#icon-plus" /></svg> 新增組別</button></div>
-          <footer class="main-footer"><span>GOOD GAME, GREAT MOMENTS.</span><span>資料僅儲存在你的瀏覽器中</span></footer>
+          <div id="empty-state" class="empty-state" hidden><div class="empty-symbol">＋</div><h3 data-i18n="emptyTitle">從第一個組別開始</h3><p data-i18n="emptyDescription">建立組別後，就可以馬上開始計分。</p><button class="primary-button" id="add-group-empty" type="button"><svg><use href="#icon-plus" /></svg><span data-i18n="addGroup">新增組別</span></button></div>
+          <footer class="main-footer"><span>GOOD GAME, GREAT MOMENTS.</span><span data-i18n="localOnly">資料僅儲存在你的瀏覽器中</span></footer>
         </section>
       </main>
     </div>
@@ -81,14 +83,14 @@
     <template id="group-template">
       <article class="group-card">
         <div class="card-top"><span class="rank-badge"></span><div class="card-actions"><button class="card-icon rename-group" type="button" aria-label="修改組別名稱" title="修改組別名稱"><svg><use href="#icon-edit" /></svg></button><button class="card-icon delete-group" type="button" aria-label="刪除組別" title="刪除組別"><svg><use href="#icon-trash" /></svg></button></div></div>
-        <div class="card-main"><div class="team-avatar" aria-hidden="true"></div><div><span class="team-caption">TEAM</span><h3 class="group-name"></h3></div></div>
-        <div class="score-area"><div><span class="score-caption">目前分數</span><button class="score-value" type="button" title="直接設定分數" aria-label="直接設定分數"></button></div><span class="score-unit">PTS</span></div>
-        <div class="score-controls"><button class="score-button minus" type="button" aria-label="減一分"><svg><use href="#icon-minus" /></svg><span>減 1 分</span></button><button class="score-button plus" type="button" aria-label="加一分"><svg><use href="#icon-plus" /></svg><span>加 1 分</span></button></div>
+        <div class="card-main"><div class="team-avatar" aria-hidden="true"></div><div><span class="team-caption" data-i18n="team">TEAM</span><h3 class="group-name"></h3></div></div>
+        <div class="score-area"><div><span class="score-caption" data-i18n="currentScore">目前分數</span><button class="score-value" type="button" title="直接設定分數" aria-label="直接設定分數"></button></div><span class="score-unit" data-i18n="pointsShort">PTS</span></div>
+        <div class="score-controls"><button class="score-button minus" type="button" aria-label="減一分"><svg><use href="#icon-minus" /></svg><span data-i18n="minusOne">減 1 分</span></button><button class="score-button plus" type="button" aria-label="加一分"><svg><use href="#icon-plus" /></svg><span data-i18n="plusOne">加 1 分</span></button></div>
       </article>
     </template>
 
     <dialog id="input-dialog" class="modal"><form method="dialog" id="input-form"><div class="modal-head"><div><span class="eyebrow">SCOREBOARD</span><h2 id="input-title"></h2></div><button type="button" class="modal-close" data-close aria-label="關閉"><svg><use href="#icon-close" /></svg></button></div><p id="input-description" class="modal-description"></p><label id="input-label" for="input-value"></label><input id="input-value" type="text" autocomplete="off" maxlength="40" required /><p id="input-error" class="form-error" aria-live="polite"></p><div class="modal-buttons"><button type="button" class="secondary-button" data-close>取消</button><button class="primary-button" type="submit" id="input-submit">儲存</button></div></form></dialog>
-    <dialog id="confirm-dialog" class="modal"><div class="modal-head"><div><span class="eyebrow">請確認</span><h2 id="confirm-title"></h2></div><button type="button" class="modal-close" data-confirm-cancel aria-label="關閉"><svg><use href="#icon-close" /></svg></button></div><p id="confirm-description" class="modal-description"></p><div class="modal-buttons"><button type="button" class="secondary-button" data-confirm-cancel>取消</button><button type="button" class="danger-button" id="confirm-accept">確認</button></div></dialog>
+    <dialog id="confirm-dialog" class="modal"><div class="modal-head"><div><span class="eyebrow" data-i18n="pleaseConfirm">請確認</span><h2 id="confirm-title"></h2></div><button type="button" class="modal-close" data-confirm-cancel aria-label="關閉"><svg><use href="#icon-close" /></svg></button></div><p id="confirm-description" class="modal-description"></p><div class="modal-buttons"><button type="button" class="secondary-button" data-confirm-cancel>取消</button><button type="button" class="danger-button" id="confirm-accept">確認</button></div></dialog>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
   </body>
 </html>

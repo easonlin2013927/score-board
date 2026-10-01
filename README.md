@@ -24,4 +24,4 @@
 
 ![Instant groups, live scoring, JSON backup and responsive layout](./docs/readme-features.svg)
 
-<p align="center">Documentation is available in the four languages above. The app interface currently uses Traditional Chinese.</p>
+<p align="center">Documentation and the app are available in Traditional Chinese, Simplified Chinese, English, and Japanese. Choose the app language from the selector in the top bar.</p>

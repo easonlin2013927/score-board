@@ -1,0 +1,13 @@
+.topbar-right { gap: 20px; }
+.save-indicator { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; }
+.language-picker { display: inline-flex; align-items: center; gap: 7px; color: #b8f56b; }
+.language-picker select { max-width: 124px; padding: 7px 25px 7px 9px; border: 1px solid #385840; border-radius: 8px; background: #17281c; color: #e9f5e8; font: inherit; font-size: 12px; cursor: pointer; }
+.language-picker select:hover { border-color: #8ccf6e; }
+.language-picker select:focus-visible { outline: 2px solid #b8f56b; outline-offset: 2px; }
+.sidebar-heading > span:first-child { font-size: 11px; color: #8da293; }
+@media (max-width: 600px) {
+  .topbar-right { gap: 0; }
+  .save-indicator { display: none; }
+  .language-picker select { max-width: 105px; font-size: 11px; }
+  .brand small { max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}

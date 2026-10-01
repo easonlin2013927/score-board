@@ -8,7 +8,7 @@
 
 <p align="center"><a href="https://score-board-4gz.pages.dev/"><img src="https://img.shields.io/badge/OPEN%20LIVE%20DEMO-Cloudflare%20Pages-3aa9b5?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Open the live scoreboard" /></a></p>
 
-> The app interface currently uses Traditional Chinese. These instructions are available in English.
+> The app supports Traditional Chinese, Simplified Chinese, English, and Japanese. Switch languages in the top bar; names and scores stay as you entered them.
 
 ## ✨ Features
 
@@ -16,7 +16,7 @@
 
 | Feature | How it works |
 | :--- | :--- |
-| 🟢 **Create groups** | A new board starts empty. Select **新增組別** (Add group) to create **新的組別** (New group), then use the pencil icon to rename it. |
+| 🟢 **Create groups** | A new board starts empty. Select **Add team** to create **New team**, then use the pencil icon to rename it. |
 | ⚡ **Update scores** | Use `+1` and `−1`, or select a score to enter an integer directly. |
 | 🏆 **See the ranking** | Groups are sorted by score. The overview shows the group count, highest score, and leader. |
 | 🧹 **Manage the board** | Rename the board, delete groups, or reset all scores after confirmation. |
@@ -39,9 +39,9 @@ Open `index.html` in a browser. This is a static site with no dependencies or bu
 ### Typical workflow
 
 1. Use the pencil beside the title to rename the scoreboard.
-2. Select **新增組別** (Add group), then use the pencil on its card to enter the team name.
+2. Select **Add team**, then use the pencil on its card to enter the team name.
 3. Use the score buttons, or select the number to set a score directly.
-4. Select **匯出記分板** (Export scoreboard) to save a JSON backup.
+4. Select **Export scoreboard** to save a JSON backup.
 
 ## 💾 Data and backups
 
@@ -70,6 +70,8 @@ score-board/
 ├─ index.html         # Page layout and dialogs
 ├─ styles.css         # Main and responsive styles
 ├─ github-link.css    # GitHub button in the sidebar
+├─ language.css       # Language selector styles
+├─ i18n.js            # Interface text in four languages
 ├─ app.js             # Scoring, storage, import, and export
 ├─ favicon.svg        # Site icon
 └─ docs/              # README graphics and translations
