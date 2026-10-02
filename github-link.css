@@ -34,6 +34,7 @@
   font-size: 10px;
   line-height: 1;
 }
+.sidebar-note { margin-bottom: 18px; }
 .sidebar-footer { margin-top: 18px; }
 
 @media (max-width: 900px) {
