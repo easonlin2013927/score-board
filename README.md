@@ -8,7 +8,7 @@
 <p align="center"><strong>🌐 選擇語言 · 选择语言 · Choose your language · 言語を選択</strong></p>
 
 <p align="center">
-  <img src="./docs/readme-hero.svg" alt="Scoreboard project banner with colorful score cards" width="100%" />
+  <img src="./docs/readme-hero-v2.svg" alt="Scoreboard project banner with colorful score cards" width="100%" />
 </p>
 
 <h1 align="center">Scoreboard</h1>

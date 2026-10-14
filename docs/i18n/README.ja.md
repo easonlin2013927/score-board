@@ -1,6 +1,6 @@
 [🌐 言語を選択](../../README.md) · [繁體中文](./README.zh-TW.md) · [简体中文](./README.zh-CN.md) · [English](./README.en.md) · **日本語**
 
-<p align="center"><img src="../readme-hero.svg" alt="カラフルなスコアボードのバナー" width="100%" /></p>
+<p align="center"><img src="../readme-hero-v2.svg" alt="カラフルなスコアボードのバナー" width="100%" /></p>
 
 <h1 align="center">Scoreboard · イベント用スコアボード</h1>
 
