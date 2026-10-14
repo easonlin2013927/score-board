@@ -32,6 +32,32 @@
   };
   Object.keys(messages).forEach((language) => Object.assign(messages[language], complianceMessages[language]));
 
+  const expansionMessages = {
+    'zh-TW': {
+      myBoards: '我的記分板', switchBoard: '切換記分板', createBoard: '新增記分板', duplicateBoard: '複製', deleteBoard: '刪除', newBoard: '新記分板', copySuffix: '（副本）', boardCreated: '已建立新記分板', boardDuplicated: '已複製記分板', boardDeleted: '已刪除記分板', deleteBoardTitle: '刪除記分板？', deleteBoardDescription: '「{name}」及其中的組別、分數和紀錄會永久刪除。需要保留時請先匯出 JSON。', boardLimit: '最多只能儲存 {max} 個記分板。',
+      scoringRules: '計分規則', scoreStep: '每次加減分數', allowNegative: '允許負分', tieRanking: '同分排名', tieShared: '同分並列', tieOrder: '依建立順序', rulesNote: '規則只套用於目前記分板；關閉負分後不會修改既有分數。', stepInvalid: '每次加減分數請輸入 1 到 100 的整數。', negativeBlocked: '這個記分板目前不允許扣成負分。', minusStep: '減 {step} 分', plusStep: '加 {step} 分', minusStepAria: '{name} 減 {step} 分', plusStepAria: '{name} 加 {step} 分',
+      scoreHistory: '分數變更紀錄', historyLimit: '保留最近 200 筆', historyEmpty: '尚無分數變更', historyAdjust: '調整「{name}」的分數', historySet: '設定「{name}」的分數', historyReset: '歸零「{name}」的分數', historyDetail: '第 {round} 回合 · {before} → {after}（{delta}）', clearLocalData: '清除所有本機記分板資料', clearDataTitle: '清除所有本機記分板資料？', clearDataDescription: '這會移除這台裝置儲存的所有記分板、組別、分數和紀錄。建議先逐一匯出 JSON 備份。語言選擇會保留。', clearDataDone: '所有本機記分板資料已清除'
+    },
+    'zh-CN': {
+      myBoards: '我的计分板', switchBoard: '切换计分板', createBoard: '新增计分板', duplicateBoard: '复制', deleteBoard: '删除', newBoard: '新计分板', copySuffix: '（副本）', boardCreated: '已创建新计分板', boardDuplicated: '已复制计分板', boardDeleted: '已删除计分板', deleteBoardTitle: '删除计分板？', deleteBoardDescription: '“{name}”及其中的组别、分数和记录将永久删除。如需保留，请先导出 JSON。', boardLimit: '最多只能保存 {max} 个计分板。',
+      scoringRules: '计分规则', scoreStep: '每次加减分数', allowNegative: '允许负分', tieRanking: '同分排名', tieShared: '同分并列', tieOrder: '按创建顺序', rulesNote: '规则仅适用于当前计分板；关闭负分后不会修改已有分数。', stepInvalid: '每次加减分数请输入 1 到 100 的整数。', negativeBlocked: '当前计分板不允许扣成负分。', minusStep: '减 {step} 分', plusStep: '加 {step} 分', minusStepAria: '{name} 减 {step} 分', plusStepAria: '{name} 加 {step} 分',
+      scoreHistory: '分数变更记录', historyLimit: '保留最近 200 条', historyEmpty: '暂无分数变更', historyAdjust: '调整“{name}”的分数', historySet: '设置“{name}”的分数', historyReset: '归零“{name}”的分数', historyDetail: '第 {round} 回合 · {before} → {after}（{delta}）', clearLocalData: '清除所有本地计分板数据', clearDataTitle: '清除所有本地计分板数据？', clearDataDescription: '这会移除这台设备保存的所有计分板、组别、分数和记录。建议先逐一导出 JSON 备份。语言选择会保留。', clearDataDone: '所有本地计分板数据已清除'
+    },
+    en: {
+      myBoards: 'My scoreboards', switchBoard: 'Switch scoreboard', createBoard: 'New board', duplicateBoard: 'Duplicate', deleteBoard: 'Delete', newBoard: 'New scoreboard', copySuffix: ' (copy)', boardCreated: 'New scoreboard created', boardDuplicated: 'Scoreboard duplicated', boardDeleted: 'Scoreboard deleted', deleteBoardTitle: 'Delete scoreboard?', deleteBoardDescription: '“{name}” and its teams, scores and history will be permanently deleted. Export a JSON backup first if needed.', boardLimit: 'You can save up to {max} scoreboards.',
+      scoringRules: 'Scoring rules', scoreStep: 'Points per tap', allowNegative: 'Allow negative scores', tieRanking: 'Tied scores', tieShared: 'Share rank', tieOrder: 'Creation order', rulesNote: 'Rules apply only to this scoreboard. Disallowing negatives does not change existing scores.', stepInvalid: 'Enter a whole number of points from 1 to 100.', negativeBlocked: 'This scoreboard does not allow scoring below zero.', minusStep: '− {step} points', plusStep: '+ {step} points', minusStepAria: 'Subtract {step} points from {name}', plusStepAria: 'Add {step} points to {name}',
+      scoreHistory: 'Score changes', historyLimit: 'Last 200 changes', historyEmpty: 'No score changes yet', historyAdjust: 'Adjusted {name}', historySet: 'Set score for {name}', historyReset: 'Reset score for {name}', historyDetail: 'Round {round} · {before} → {after} ({delta})', clearLocalData: 'Clear all local scoreboard data', clearDataTitle: 'Clear all local scoreboard data?', clearDataDescription: 'This removes every scoreboard, team, score and history entry saved on this device. Export each board as JSON first if needed. Your language choice stays saved.', clearDataDone: 'All local scoreboard data cleared'
+    },
+    ja: {
+      myBoards: 'マイスコアボード', switchBoard: 'スコアボードを切り替え', createBoard: '新しいボード', duplicateBoard: '複製', deleteBoard: '削除', newBoard: '新しいスコアボード', copySuffix: '（コピー）', boardCreated: '新しいボードを作成しました', boardDuplicated: 'ボードを複製しました', boardDeleted: 'ボードを削除しました', deleteBoardTitle: 'ボードを削除しますか？', deleteBoardDescription: '「{name}」とそのチーム、得点、履歴は完全に削除されます。必要なら先に JSON で保存してください。', boardLimit: '保存できるボードは最大 {max} 個です。',
+      scoringRules: '得点ルール', scoreStep: '1 回の加減点', allowNegative: 'マイナス得点を許可', tieRanking: '同点時の順位', tieShared: '同順位にする', tieOrder: '作成順にする', rulesNote: 'ルールは現在のボードだけに適用されます。マイナス得点を無効にしても既存の得点は変わりません。', stepInvalid: '1～100 の整数を入力してください。', negativeBlocked: 'このボードでは 0 点未満に減らせません。', minusStep: '{step} 点減らす', plusStep: '{step} 点加える', minusStepAria: '{name} から {step} 点減らす', plusStepAria: '{name} に {step} 点加える',
+      scoreHistory: '得点の変更履歴', historyLimit: '最近の 200 件', historyEmpty: '得点の変更はまだありません', historyAdjust: '{name} の得点を変更', historySet: '{name} の得点を設定', historyReset: '{name} の得点をリセット', historyDetail: '第 {round} ラウンド · {before} → {after}（{delta}）', clearLocalData: '端末の全ボードデータを消去', clearDataTitle: '端末の全ボードデータを消去しますか？', clearDataDescription: 'この端末に保存したすべてのボード、チーム、得点、履歴を消去します。必要なら各ボードを先に JSON で保存してください。言語設定は残ります。', clearDataDone: '端末の全ボードデータを消去しました'
+    }
+  };
+  Object.keys(messages).forEach((language) => Object.assign(messages[language], expansionMessages[language]));
+  const installLabels = { 'zh-TW': '安裝離線版本', 'zh-CN': '安装离线版本', en: 'Install for offline use', ja: 'オフライン用にインストール' };
+  Object.keys(messages).forEach((language) => { messages[language].installApp = installLabels[language]; });
+
   const languageTags = { 'zh-TW': 'zh-Hant', 'zh-CN': 'zh-Hans', en: 'en', ja: 'ja' };
   const STORAGE_KEY = 'scoreboard.language';
 

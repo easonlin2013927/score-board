@@ -26,6 +26,8 @@
 
 <p align="center">Now with full screen presentation, a round timer, round-by-round scores, and PNG results export.</p>
 
+<p align="center">Manage multiple boards, review score changes, set per-board scoring rules, and install the site for offline use.</p>
+
 <p align="center">Documentation and the app are available in Traditional Chinese, Simplified Chinese, English, and Japanese. Choose the app language from the selector in the top bar.</p>
 
 <p align="center"><a href="https://score-board-4gz.pages.dev/legal.html#privacy">Privacy</a> · <a href="https://score-board-4gz.pages.dev/legal.html#terms">Terms</a> · <a href="https://score-board-4gz.pages.dev/legal.html#cookies">Cookies</a> · <a href="./LAUNCH_CHECKLIST.md">Launch checklist</a> · <a href="./ASSET_NOTES.md">Asset notes</a></p>

@@ -17,9 +17,13 @@
 | Feature | How it works |
 | :--- | :--- |
 | 🟢 **Create groups** | A new board starts empty. Select **Add team** to create **New team**, then use the pencil icon to rename it. |
-| ⚡ **Update scores** | Use `+1` and `−1`, or select a score to enter an integer directly. |
+| ⚡ **Update scores** | Use the score buttons or select a score to enter an integer directly. Set how many points each tap changes. |
 | 🏆 **See the ranking** | Groups are sorted by score. The overview shows the group count, highest score, and leader. |
 | 🧹 **Manage the board** | Rename the board, delete groups, or reset all scores after confirmation. |
+| 🗂️ **Multiple boards** | Create, switch, duplicate and delete boards. Teams, rules and history stay separate. |
+| 🧮 **Scoring rules** | Set a 1–100 point step, choose whether negative scores are allowed, and choose shared ranks or creation order for ties. |
+| 🕓 **Score history** | Each board keeps its latest 200 score adjustments, direct edits and resets. |
+| 📲 **Install and use offline** | Supported browsers can install the site; after the first online load, it can open offline. |
 | 📦 **Import and export** | Download a JSON backup or import one on another browser or device. Importing asks before replacing current data. |
 | 🖥️ **Full screen display** | Show teams, total scores, and the round timer in a large display. |
 | ⏱️ **Timer and rounds** | Set minutes per round, start or pause the timer, and review scores from earlier rounds. |
@@ -54,7 +58,7 @@ Importing replaces the current board and scores after a confirmation prompt. If 
 
 ## 🔒 Data and launch information
 
-Scoreboard data stays in the current browser. Use “Clear local scoreboard data” in the sidebar to remove the board, groups, scores and timer; export a JSON backup first if you need a copy. The site has [privacy, terms, cookies and project information](https://score-board-4gz.pages.dev/legal.html). The repository also has a [launch checklist](../../LAUNCH_CHECKLIST.md) and [asset notes](../../ASSET_NOTES.md).
+Scoreboard data stays in the current browser. “Clear all local scoreboard data” removes every board; export each one as JSON first if needed. Each import or export handles only the selected board. Offline installation requires HTTPS or a local server; opening `index.html` directly still supports ordinary scoring. The site has [privacy, terms, cookies and project information](https://score-board-4gz.pages.dev/legal.html). The repository also has a [launch checklist](../../LAUNCH_CHECKLIST.md) and [asset notes](../../ASSET_NOTES.md).
 
 ## ☁️ Deploy to Cloudflare Pages
 
@@ -79,8 +83,11 @@ score-board/
 ├─ github-link.css    # GitHub button in the sidebar
 ├─ language.css       # Language selector styles
 ├─ features.css       # Timer and display styles
+├─ extras.css         # Multiple boards, rules and history styles
 ├─ i18n.js            # Interface text in four languages
 ├─ app.js             # Scoring, storage, import, and export
+├─ pwa.js, sw.js       # Installation and offline cache
+├─ manifest.webmanifest, icons/  # Install metadata and icons
 ├─ favicon.svg        # Site icon
 └─ docs/              # README graphics and translations
 ```

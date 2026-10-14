@@ -6,8 +6,8 @@
       lang: 'zh-Hant', title: '網站資訊', intro: '了解記分資料如何儲存、網站如何運作，以及如何聯絡專案維護者。', back: '返回記分板', language: '語言', updated: '更新日期：2026-10-14', nav: '頁面段落',
       sections: {
         privacy: { title: '隱私說明', parts: [
-          ['儲存的資料', '記分板名稱、組別名稱、分數、回合與計時器存在您目前瀏覽器的 localStorage（scoreboard.v1）。語言偏好另存於 scoreboard.language。此網站沒有帳號，也沒有把這些記分資料傳到專案自己的伺服器。'],
-          ['匯入、匯出與刪除', '匯入的 JSON 由瀏覽器在本機讀取；匯出的 JSON 與 PNG 會下載到您的裝置。若您自行分享匯出檔案，接收者將能看到其中內容。側邊欄的「清除本機記分資料」可刪除目前網站來源的記分資料，並保留語言設定。清除瀏覽器網站資料也會移除本機設定。'],
+          ['儲存的資料', '所有記分板的名稱、組別、分數、回合、計時器、計分規則與最近 200 筆分數變更紀錄存在您目前瀏覽器的 localStorage（scoreboard.collection.v1）。舊版資料會從 scoreboard.v1 搬入新格式。語言偏好另存於 scoreboard.language。離線功能會在瀏覽器快取網站檔案。此網站沒有帳號，也沒有把記分資料傳到專案自己的伺服器。'],
+          ['匯入、匯出與刪除', '匯入的 JSON 由瀏覽器在本機讀取，並取代目前選取的記分板；每次匯出 JSON 或 PNG 只包含目前選取的記分板。若您自行分享匯出檔案，接收者將能看到其中內容。側邊欄的「清除所有本機記分板資料」會刪除全部記分板並保留語言設定。清除瀏覽器網站資料也會移除語言設定與離線快取。'],
           ['主機與外部連結', '網站由 Cloudflare Pages 提供。Cloudflare 可能為連線、安全及服務運作處理技術資料；詳細做法請參考 Cloudflare 的隱私與 Cookie 文件。只有在您點選 GitHub 連結時，瀏覽器才會前往 GitHub。網站程式目前沒有分析追蹤、廣告、第三方嵌入或遠端字型。']
         ], links: [['Cloudflare 隱私政策', 'https://www.cloudflare.com/privacypolicy/']] },
         terms: { title: '使用條款', parts: [
@@ -29,8 +29,8 @@
       lang: 'zh-Hans', title: '网站信息', intro: '了解计分数据如何存储、网站如何运作，以及如何联系项目维护者。', back: '返回计分板', language: '语言', updated: '更新日期：2026-10-14', nav: '页面章节',
       sections: {
         privacy: { title: '隐私说明', parts: [
-          ['存储的数据', '计分板名称、组别名称、分数、回合和计时器保存在当前浏览器的 localStorage（scoreboard.v1）。语言偏好另存于 scoreboard.language。本站没有账户，也不会将这些计分数据发送到项目自己的服务器。'],
-          ['导入、导出和删除', '导入的 JSON 由浏览器在本地读取；导出的 JSON 和 PNG 会下载到您的设备。若您自行分享导出文件，接收者将能看到其中内容。侧边栏的“清除本地计分数据”可删除当前网站来源的计分数据，并保留语言设置。清除浏览器网站数据也会移除本地设置。'],
+          ['存储的数据', '所有计分板的名称、组别、分数、回合、计时器、计分规则与最近 200 条分数变更记录保存在当前浏览器的 localStorage（scoreboard.collection.v1）。旧版数据会从 scoreboard.v1 迁移。语言偏好另存于 scoreboard.language。离线功能会在浏览器中缓存网站文件。本站没有账户，也不会将计分数据发送到项目自己的服务器。'],
+          ['导入、导出和删除', '导入的 JSON 由浏览器在本地读取，并替换当前选中的计分板；每次导出 JSON 或 PNG 仅包含当前选中的计分板。若您自行分享导出文件，接收者将能看到其中内容。侧边栏的“清除所有本地计分板数据”会删除所有计分板并保留语言设置。清除浏览器网站数据也会移除语言设置和离线缓存。'],
           ['主机和外部链接', '网站托管于 Cloudflare Pages。Cloudflare 可能为连接、安全及服务运行处理技术数据；详情请参考其隐私和 Cookie 文件。只有点击 GitHub 链接时，浏览器才会前往 GitHub。网站程序目前没有分析追踪、广告、第三方嵌入或远程字体。']
         ], links: [['Cloudflare 隐私政策', 'https://www.cloudflare.com/privacypolicy/']] },
         terms: { title: '使用条款', parts: [
@@ -52,8 +52,8 @@
       lang: 'en', title: 'Site information', intro: 'How scoreboard data is stored, how this site works, and how to contact the project maintainer.', back: 'Back to scoreboard', language: 'Language', updated: 'Updated: 2026-10-14', nav: 'On this page',
       sections: {
         privacy: { title: 'Privacy', parts: [
-          ['Data stored', 'The board title, group names, scores, rounds and timer are saved in this browser’s localStorage (scoreboard.v1). Your language choice is saved separately as scoreboard.language. There are no accounts, and the site does not send this scoreboard data to a project-operated server.'],
-          ['Import, export and deletion', 'Imported JSON is read locally in your browser. Exported JSON and PNG files download to your device. Anyone you choose to share an export with can read its contents. “Clear local scoreboard data” in the sidebar removes scoreboard data for this site while retaining your language choice. Clearing browser site data removes local settings too.'],
+          ['Data stored', 'All board titles, team names, scores, rounds, timers, scoring rules and the latest 200 score changes are saved in this browser’s localStorage (scoreboard.collection.v1). Older data is migrated from scoreboard.v1. Your language choice is stored separately as scoreboard.language. The offline feature caches site files in the browser. There are no accounts, and the site does not send scoreboard data to a project-operated server.'],
+          ['Import, export and deletion', 'Imported JSON is read locally in your browser and replaces the selected board. Each JSON or PNG export contains only the selected board. Anyone you choose to share an export with can read its contents. “Clear all local scoreboard data” in the sidebar removes every board while retaining your language choice. Clearing browser site data also removes the language setting and offline cache.'],
           ['Hosting and external links', 'Cloudflare Pages hosts this site. Cloudflare may process technical connection and security data to operate its service; see its privacy and cookie documents. Your browser visits GitHub only after you click a GitHub link. The site code currently has no analytics, advertising, third-party embeds or remote fonts.']
         ], links: [['Cloudflare Privacy Policy', 'https://www.cloudflare.com/privacypolicy/']] },
         terms: { title: 'Terms of use', parts: [
@@ -75,8 +75,8 @@
       lang: 'ja', title: 'サイト情報', intro: 'スコアデータの保存方法、サイトの仕組み、管理者への連絡方法を説明します。', back: 'スコアボードに戻る', language: '言語', updated: '更新日：2026-10-14', nav: 'ページ内の項目',
       sections: {
         privacy: { title: 'プライバシー', parts: [
-          ['保存するデータ', 'ボード名、グループ名、得点、ラウンド、タイマーは現在のブラウザーの localStorage（scoreboard.v1）に保存されます。言語設定は scoreboard.language に別途保存されます。アカウントはなく、これらのスコアデータをプロジェクト運営のサーバーに送信しません。'],
-          ['読み込み・書き出し・削除', '読み込んだ JSON はブラウザー内で処理されます。書き出した JSON と PNG は端末にダウンロードされます。共有したファイルの内容は受信者が確認できます。サイドバーの「端末のスコアデータを消去」でこのサイトのスコアデータを削除し、言語設定は残せます。ブラウザーのサイトデータを消去すると設定も消えます。'],
+          ['保存するデータ', 'すべてのボード名、グループ名、得点、ラウンド、タイマー、得点ルールと直近 200 件の変更履歴は現在のブラウザーの localStorage（scoreboard.collection.v1）に保存されます。旧データは scoreboard.v1 から移行されます。言語設定は scoreboard.language に別途保存されます。オフライン機能はサイトのファイルをブラウザーにキャッシュします。アカウントはなく、得点データをプロジェクト運営のサーバーに送信しません。'],
+          ['読み込み・書き出し・削除', '読み込んだ JSON はブラウザー内で処理され、選択中のボードを置き換えます。JSON と PNG の書き出しは選択中のボードだけが対象です。共有したファイルの内容は受信者が確認できます。サイドバーの「端末の全ボードデータを消去」で全ボードを削除し、言語設定は残せます。ブラウザーのサイトデータを消去すると言語設定とオフラインキャッシュも消えます。'],
           ['ホスティングと外部リンク', 'このサイトは Cloudflare Pages で配信されます。Cloudflare はサービスの運営やセキュリティのために接続情報などを処理する場合があります。詳細は同社のプライバシーと Cookie の文書をご覧ください。GitHub への移動はリンクをクリックした場合のみです。現在のサイトコードには解析、広告、外部埋め込み、外部フォントはありません。']
         ], links: [['Cloudflare プライバシーポリシー', 'https://www.cloudflare.com/privacypolicy/']] },
         terms: { title: '利用条件', parts: [

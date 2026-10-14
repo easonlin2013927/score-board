@@ -7,13 +7,17 @@
     <meta name="description" content="一個簡潔好用的記分板。新增組別、即時記分，並自由匯入或匯出資料。" />
     <title>記分板 · Scoreboard</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./github-link.css" />
     <link rel="stylesheet" href="./language.css" />
     <link rel="stylesheet" href="./features.css" />
     <link rel="stylesheet" href="./legal-links.css" />
-    <script src="./i18n.js" defer></script>
-    <script src="./app.js" defer></script>
+    <link rel="stylesheet" href="./extras.css" />
+    <script src="./i18n.js?v=2" defer></script>
+    <script src="./app.js?v=2" defer></script>
+    <script src="./pwa.js" defer></script>
   </head>
   <body>
     <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -45,6 +49,15 @@
             <h2 id="sidebar-title">活動記分板</h2>
             <button class="text-button" id="rename-board-side" type="button"><span data-i18n="editName">編輯名稱</span> <svg><use href="#icon-arrow" /></svg></button>
           </div>
+          <div class="sidebar-section board-management">
+            <label class="sidebar-label" for="board-select" data-i18n="myBoards">我的記分板</label>
+            <select id="board-select" aria-label="切換記分板"></select>
+            <div class="board-actions">
+              <button class="subtle-button" id="create-board" type="button" data-i18n="createBoard">新增記分板</button>
+              <button class="subtle-button" id="duplicate-board" type="button" data-i18n="duplicateBoard">複製</button>
+              <button class="subtle-button" id="delete-board" type="button" data-i18n="deleteBoard">刪除</button>
+            </div>
+          </div>
           <div class="sidebar-section">
             <span class="sidebar-label" data-i18n="dataManagement">資料管理</span>
             <button class="sidebar-action" id="export-button" type="button"><svg><use href="#icon-download" /></svg><span data-i18n="exportBoard">匯出記分板</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
@@ -54,6 +67,7 @@
             <input id="import-file" type="file" accept=".json,application/json" hidden />
           </div>
           <button class="sidebar-action presentation-launch" id="open-presentation" type="button"><svg><use href="#icon-trophy" /></svg><span data-i18n="presentationMode">全螢幕展示</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
+          <button class="sidebar-action install-action" id="install-app" type="button" hidden><span aria-hidden="true">↓</span><span data-i18n="installApp">安裝離線版本</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
           <div class="sidebar-note"><span class="note-spark">✳</span><p data-i18n="storageNote">分數會自動儲存在這台裝置。想換裝置使用？匯出檔案後再匯入即可。</p></div>
           <a class="sidebar-github" href="https://github.com/easonlin2013927/score-board" target="_blank" rel="noopener noreferrer" aria-label="在新分頁開啟 GitHub 原始碼"><span class="github-dot" aria-hidden="true">GH</span><span data-i18n="githubLink">前往 GitHub 原始碼</span><svg><use href="#icon-arrow" /></svg></a>
           <div class="sidebar-footer"><span data-i18n="sidebarFooter">用每一分，記錄精彩時刻</span> <span>↗</span></div>
@@ -83,9 +97,20 @@
             <div id="round-history" class="round-history"></div>
           </section>
 
+          <section class="rules-panel" aria-labelledby="rules-heading">
+            <div><span class="section-kicker">SCORING</span><h2 id="rules-heading" data-i18n="scoringRules">計分規則</h2></div>
+            <div class="rules-fields">
+              <label for="score-step"><span data-i18n="scoreStep">每次加減分數</span><input id="score-step" type="number" min="1" max="100" step="1" inputmode="numeric" value="1" /></label>
+              <label class="checkbox-field" for="allow-negative"><input id="allow-negative" type="checkbox" checked /><span data-i18n="allowNegative">允許負分</span></label>
+              <label for="tie-mode"><span data-i18n="tieRanking">同分排名</span><select id="tie-mode"><option value="shared" data-i18n="tieShared">同分並列</option><option value="order" data-i18n="tieOrder">依建立順序</option></select></label>
+            </div>
+            <p data-i18n="rulesNote">規則只套用於目前記分板；關閉負分後不會修改既有分數。</p>
+          </section>
+
           <div class="list-heading"><div><h2 data-i18n="groupRanking">組別排行</h2><span id="group-summary">新增組別，開始記錄分數</span></div><button class="subtle-button" id="reset-scores" type="button" data-i18n="resetAll">全部歸零</button></div>
           <div id="groups" class="groups-grid" aria-live="polite"></div>
           <div id="empty-state" class="empty-state" hidden><div class="empty-symbol">＋</div><h3 data-i18n="emptyTitle">從第一個組別開始</h3><p data-i18n="emptyDescription">建立組別後，就可以馬上開始計分。</p><button class="primary-button" id="add-group-empty" type="button"><svg><use href="#icon-plus" /></svg><span data-i18n="addGroup">新增組別</span></button></div>
+          <section class="score-history-panel" aria-labelledby="score-history-heading"><div class="history-heading"><div><span class="section-kicker">ACTIVITY</span><h2 id="score-history-heading" data-i18n="scoreHistory">分數變更紀錄</h2></div><span data-i18n="historyLimit">保留最近 200 筆</span></div><p id="history-empty" data-i18n="historyEmpty">尚無分數變更</p><ol id="score-history"></ol></section>
           <footer class="main-footer"><span>GOOD GAME, GREAT MOMENTS.</span><div class="footer-details"><span data-i18n="localOnly">資料僅儲存在你的瀏覽器中</span><nav class="policy-links" aria-label="網站資訊"><a href="./legal.html#privacy" data-i18n="privacyLink">隱私說明</a><a href="./legal.html#terms" data-i18n="termsLink">使用條款</a><a href="./legal.html#cookies" data-i18n="cookiesLink">Cookie 說明</a><a href="./legal.html#about" data-i18n="aboutLink">關於專案</a></nav></div></footer>
         </section>
       </main>
@@ -102,7 +127,7 @@
         <div class="card-top"><span class="rank-badge"></span><div class="card-actions"><button class="card-icon rename-group" type="button" aria-label="修改組別名稱" title="修改組別名稱"><svg><use href="#icon-edit" /></svg></button><button class="card-icon delete-group" type="button" aria-label="刪除組別" title="刪除組別"><svg><use href="#icon-trash" /></svg></button></div></div>
         <div class="card-main"><div class="team-avatar" aria-hidden="true"></div><div><span class="team-caption" data-i18n="team">TEAM</span><h3 class="group-name"></h3></div></div>
         <div class="score-area"><div><span class="score-caption" data-i18n="currentScore">目前分數</span><button class="score-value" type="button" title="直接設定分數" aria-label="直接設定分數"></button></div><span class="score-unit" data-i18n="pointsShort">PTS</span></div>
-        <div class="score-controls"><button class="score-button minus" type="button" aria-label="減一分"><svg><use href="#icon-minus" /></svg><span data-i18n="minusOne">減 1 分</span></button><button class="score-button plus" type="button" aria-label="加一分"><svg><use href="#icon-plus" /></svg><span data-i18n="plusOne">加 1 分</span></button></div>
+        <div class="score-controls"><button class="score-button minus" type="button" aria-label="減一分"><svg><use href="#icon-minus" /></svg><span>減 1 分</span></button><button class="score-button plus" type="button" aria-label="加一分"><svg><use href="#icon-plus" /></svg><span>加 1 分</span></button></div>
       </article>
     </template>
 

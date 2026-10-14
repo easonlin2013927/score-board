@@ -1,10 +1,13 @@
 (() => {
   'use strict';
 
-  const STORAGE_KEY = 'scoreboard.v1';
+  const LEGACY_STORAGE_KEY = 'scoreboard.v1';
+  const STORAGE_KEY = 'scoreboard.collection.v1';
   const MAX_SCORE = 999999999;
   const MAX_GROUPS = 100;
   const MAX_ROUNDS = 30;
+  const MAX_BOARDS = 20;
+  const MAX_HISTORY = 200;
   const DEFAULT_TIMER_SECONDS = 300;
   const i18n = window.SCOREBOARD_I18N;
   const t = i18n.t;
@@ -23,13 +26,15 @@
     return globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
   }
 
-  function initialBoard() {
+  function initialBoard(title = t('initialTitle')) {
     return {
       version: 1,
-      title: t('initialTitle'),
+      title,
       groups: [],
       round: 1,
       timer: { duration: DEFAULT_TIMER_SECONDS, remaining: DEFAULT_TIMER_SECONDS, endsAt: null },
+      rules: { step: 1, allowNegative: true, tieMode: 'shared' },
+      history: [],
       updatedAt: new Date().toISOString(),
     };
   }
@@ -68,20 +73,65 @@
       }
       return { id: newId(), name, score: group.score, roundScores: [...roundScores] };
     });
-    return { version: 1, title, groups, round, timer, updatedAt: new Date().toISOString() };
+    const rawRules = value.rules ?? { step: 1, allowNegative: true, tieMode: 'shared' };
+    if (!rawRules || !Number.isInteger(rawRules.step) || rawRules.step < 1 || rawRules.step > 100 ||
+        typeof rawRules.allowNegative !== 'boolean' || !['shared', 'order'].includes(rawRules.tieMode)) {
+      throw new Error(t('invalidFile'));
+    }
+    const rules = { step: rawRules.step, allowNegative: rawRules.allowNegative, tieMode: rawRules.tieMode };
+    const rawHistory = value.history ?? [];
+    if (!Array.isArray(rawHistory)) throw new Error(t('invalidFile'));
+    const history = rawHistory.slice(-MAX_HISTORY).map((entry) => {
+      if (!entry || !cleanName(entry.name) || cleanName(entry.name).length > 40 ||
+          !Number.isInteger(entry.round) || entry.round < 1 || entry.round > MAX_ROUNDS ||
+          !Number.isSafeInteger(entry.before) || Math.abs(entry.before) > MAX_SCORE ||
+          !Number.isSafeInteger(entry.after) || Math.abs(entry.after) > MAX_SCORE ||
+          !['adjust', 'set', 'reset'].includes(entry.action) ||
+          typeof entry.at !== 'string' || !Number.isFinite(Date.parse(entry.at))) {
+        throw new Error(t('invalidFile'));
+      }
+      return { at: entry.at, round: entry.round, name: cleanName(entry.name), before: entry.before, after: entry.after, action: entry.action };
+    });
+    return { version: 1, title, groups, round, timer, rules, history, updatedAt: new Date().toISOString() };
   }
 
-  function loadBoard() {
+  function emptyCollection(board = initialBoard()) {
+    const id = newId();
+    return { version: 1, activeId: id, boards: [{ id, board }] };
+  }
+
+  function loadCollection() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? parseBoard(JSON.parse(saved)) : initialBoard();
+      if (saved) {
+        const data = JSON.parse(saved);
+        if (data?.version !== 1 || !Array.isArray(data.boards) || data.boards.length < 1 || data.boards.length > MAX_BOARDS) throw new Error('Invalid collection');
+        const seen = new Set();
+        const boards = data.boards.map((entry) => {
+          if (typeof entry?.id !== 'string' || !entry.id || entry.id.length > 100 || seen.has(entry.id)) throw new Error('Invalid board ID');
+          seen.add(entry.id);
+          return { id: entry.id, board: parseBoard(entry.board) };
+        });
+        return { version: 1, activeId: seen.has(data.activeId) ? data.activeId : boards[0].id, boards };
+      }
+      const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+      if (legacy) {
+        const migrated = emptyCollection(parseBoard(JSON.parse(legacy)));
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
+          localStorage.removeItem(LEGACY_STORAGE_KEY);
+        } catch { setTimeout(() => showToast(t('storageFailed')), 100); }
+        return migrated;
+      }
+      return emptyCollection();
     } catch {
       setTimeout(() => showToast(t('loadFailed')), 100);
-      return initialBoard();
+      return emptyCollection();
     }
   }
 
-  let board = loadBoard();
+  let collection = loadCollection();
+  let board = collection.boards.find((entry) => entry.id === collection.activeId).board;
 
   function showToast(message) {
     const toast = $('#toast');
@@ -91,10 +141,11 @@
     toastTimer = setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
-  function save() {
-    board.updatedAt = new Date().toISOString();
+  function save(touch = true) {
+    if (touch) board.updatedAt = new Date().toISOString();
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(board));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(collection));
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
       storageFailed = false;
       $('#save-status').textContent = t('saved');
     } catch {
@@ -104,16 +155,72 @@
     }
   }
 
+  function sortedGroups() {
+    return [...board.groups].sort((a, b) => b.score - a.score);
+  }
+
+  function rankFor(sorted, index) {
+    if (board.rules.tieMode === 'order') return index + 1;
+    return sorted.findIndex((group) => group.score === sorted[index].score) + 1;
+  }
+
+  function renderBoardControls() {
+    const select = $('#board-select');
+    select.replaceChildren();
+    collection.boards.forEach((entry) => {
+      const option = document.createElement('option');
+      option.value = entry.id;
+      option.textContent = entry.board.title;
+      select.append(option);
+    });
+    select.value = collection.activeId;
+    select.setAttribute('aria-label', t('switchBoard'));
+    $('#create-board').disabled = collection.boards.length >= MAX_BOARDS;
+    $('#duplicate-board').disabled = collection.boards.length >= MAX_BOARDS;
+    $('#delete-board').disabled = collection.boards.length === 1;
+  }
+
+  function renderScoreHistory() {
+    const list = $('#score-history');
+    list.replaceChildren();
+    $('#history-empty').hidden = board.history.length > 0;
+    for (const entry of [...board.history].reverse()) {
+      const item = document.createElement('li');
+      const name = document.createElement('span');
+      name.className = 'history-event';
+      name.textContent = t(`history${entry.action[0].toUpperCase()}${entry.action.slice(1)}`, { name: entry.name });
+      const time = document.createElement('time');
+      time.className = 'history-time';
+      time.dateTime = entry.at;
+      time.textContent = new Date(entry.at).toLocaleString(i18n.language);
+      const detail = document.createElement('span');
+      detail.className = 'history-detail';
+      detail.textContent = t('historyDetail', { round: entry.round, before: entry.before.toLocaleString(i18n.language), after: entry.after.toLocaleString(i18n.language), delta: `${entry.after - entry.before > 0 ? '+' : ''}${(entry.after - entry.before).toLocaleString(i18n.language)}` });
+      item.append(name, time, detail);
+      list.append(item);
+    }
+  }
+
+  function recordScore(group, before, action) {
+    if (before === group.score) return;
+    board.history.push({ at: new Date().toISOString(), round: board.round, name: group.name, before, after: group.score, action });
+    if (board.history.length > MAX_HISTORY) board.history.splice(0, board.history.length - MAX_HISTORY);
+  }
+
   function render() {
+    renderBoardControls();
+    $('#score-step').value = board.rules.step;
+    $('#allow-negative').checked = board.rules.allowNegative;
+    $('#tie-mode').value = board.rules.tieMode;
     $('#board-title').textContent = board.title;
     $('#sidebar-title').textContent = board.title;
     document.title = `${board.title} · Scoreboard`;
     $('#group-count').textContent = board.groups.length;
-    const sorted = [...board.groups].sort((a, b) => b.score - a.score);
+    const sorted = sortedGroups();
     const highest = sorted[0]?.score ?? 0;
     const tied = sorted.filter((group) => group.score === highest);
     $('#highest-score').textContent = highest.toLocaleString(i18n.language);
-    $('#leader-name').textContent = !sorted.length ? t('noGroups') : highest === 0 && tied.length === sorted.length ? t('noLeader') : tied.length > 1 ? t('tied', { count: tied.length }) : tied[0].name;
+    $('#leader-name').textContent = !sorted.length ? t('noGroups') : highest === 0 && tied.length === sorted.length ? t('noLeader') : board.rules.tieMode === 'shared' && tied.length > 1 ? t('tied', { count: tied.length }) : sorted[0].name;
     $('#group-summary').textContent = board.groups.length ? t(board.groups.length === 1 ? 'groupSummaryOne' : 'groupSummary', { count: board.groups.length }) : t('groupSummaryEmpty');
     $('#reset-scores').disabled = !board.groups.some((group) => group.score !== 0);
     $('#empty-state').hidden = board.groups.length > 0;
@@ -125,8 +232,8 @@
     sorted.forEach((group, index) => {
       const card = $('#group-template').content.firstElementChild.cloneNode(true);
       card.dataset.id = group.id;
-      if (index === 0 && highest > 0 && tied.length === 1) card.classList.add('is-leader');
-      card.querySelector('.rank-badge').textContent = t('rank', { number: String(index + 1).padStart(2, '0') });
+      if (index === 0 && highest > 0 && (tied.length === 1 || board.rules.tieMode === 'order')) card.classList.add('is-leader');
+      card.querySelector('.rank-badge').textContent = t('rank', { number: String(rankFor(sorted, index)).padStart(2, '0') });
       card.querySelector('.team-avatar').textContent = [...group.name][0]?.toUpperCase() ?? '?';
       card.querySelector('.group-name').textContent = group.name;
       const roundScore = document.createElement('p');
@@ -137,8 +244,11 @@
       scoreButton.textContent = group.score.toLocaleString(i18n.language);
       scoreButton.title = t('setScore');
       scoreButton.setAttribute('aria-label', t('scoreAria', { name: group.name, score: group.score }));
-      card.querySelector('.minus').setAttribute('aria-label', t('minusAria', { name: group.name }));
-      card.querySelector('.plus').setAttribute('aria-label', t('plusAria', { name: group.name }));
+      card.querySelector('.minus').setAttribute('aria-label', t('minusStepAria', { name: group.name, step: board.rules.step }));
+      card.querySelector('.plus').setAttribute('aria-label', t('plusStepAria', { name: group.name, step: board.rules.step }));
+      card.querySelector('.minus span').textContent = t('minusStep', { step: board.rules.step });
+      card.querySelector('.plus span').textContent = t('plusStep', { step: board.rules.step });
+      card.querySelector('.minus').disabled = !board.rules.allowNegative && group.score - board.rules.step < 0;
       card.querySelector('.rename-group').title = t('renameGroup');
       card.querySelector('.delete-group').title = t('deleteGroup');
       card.querySelector('.rename-group').setAttribute('aria-label', t('renameAria', { name: group.name }));
@@ -147,6 +257,7 @@
       groupsElement.append(card);
     });
     renderRoundHistory();
+    renderScoreHistory();
     renderTimer();
     renderPresentation();
   }
@@ -209,12 +320,13 @@
       container.append(empty);
       return;
     }
-    [...board.groups].sort((a, b) => b.score - a.score).forEach((group, index) => {
+    const sorted = sortedGroups();
+    sorted.forEach((group, index) => {
       const card = document.createElement('article');
       card.className = 'presentation-card';
       const rank = document.createElement('div');
       rank.className = 'presentation-rank';
-      rank.textContent = t('rank', { number: String(index + 1).padStart(2, '0') });
+      rank.textContent = t('rank', { number: String(rankFor(sorted, index)).padStart(2, '0') });
       const name = document.createElement('div');
       name.className = 'presentation-name';
       name.textContent = group.name;
@@ -311,7 +423,61 @@
   confirmDialog.querySelectorAll('[data-confirm-cancel]').forEach((button) => button.addEventListener('click', () => confirmDialog.close()));
 
   const validateName = (value) => !value ? t('nameRequired') : [...value].length > 40 ? t('nameTooLong') : '';
-  const validateScore = (value) => !/^-?\d+$/.test(value) || !Number.isSafeInteger(Number(value)) || Math.abs(Number(value)) > MAX_SCORE ? t('scoreInvalid', { min: -MAX_SCORE, max: MAX_SCORE }) : '';
+  const validateScore = (value) => !/^-?\d+$/.test(value) || !Number.isSafeInteger(Number(value)) || Math.abs(Number(value)) > MAX_SCORE || (!board.rules.allowNegative && Number(value) < 0) ? t('scoreInvalid', { min: board.rules.allowNegative ? -MAX_SCORE : 0, max: MAX_SCORE }) : '';
+
+  $('#board-select').addEventListener('change', (event) => {
+    const entry = collection.boards.find((item) => item.id === event.target.value);
+    if (!entry) return;
+    collection.activeId = entry.id;
+    board = entry.board;
+    save(false); render();
+  });
+  $('#create-board').addEventListener('click', () => {
+    if (collection.boards.length >= MAX_BOARDS) { showToast(t('boardLimit', { max: MAX_BOARDS })); return; }
+    const id = newId();
+    board = initialBoard(t('newBoard'));
+    collection.boards.push({ id, board });
+    collection.activeId = id;
+    save(); render(); showToast(t('boardCreated'));
+  });
+  $('#duplicate-board').addEventListener('click', () => {
+    if (collection.boards.length >= MAX_BOARDS) { showToast(t('boardLimit', { max: MAX_BOARDS })); return; }
+    const suffix = t('copySuffix');
+    const copy = parseBoard({ ...board, title: `${board.title.slice(0, 40 - suffix.length)}${suffix}`, timer: { ...board.timer, remaining: remainingSeconds(), endsAt: null } });
+    const id = newId();
+    collection.boards.push({ id, board: copy });
+    collection.activeId = id;
+    board = copy;
+    save(); render(); showToast(t('boardDuplicated'));
+  });
+  $('#delete-board').addEventListener('click', async () => {
+    if (collection.boards.length < 2) return;
+    if (!await askConfirm(t('deleteBoardTitle'), t('deleteBoardDescription', { name: board.title }), t('deleteBoard'))) return;
+    collection.boards = collection.boards.filter((entry) => entry.id !== collection.activeId);
+    collection.activeId = collection.boards[0].id;
+    board = collection.boards[0].board;
+    save(false); render(); showToast(t('boardDeleted'));
+  });
+
+  $('#score-step').addEventListener('change', (event) => {
+    const step = Number(event.target.value);
+    if (!Number.isInteger(step) || step < 1 || step > 100) {
+      event.target.value = board.rules.step;
+      showToast(t('stepInvalid'));
+      return;
+    }
+    board.rules.step = step;
+    save(); render();
+  });
+  $('#allow-negative').addEventListener('change', (event) => {
+    board.rules.allowNegative = event.target.checked;
+    save(); render();
+  });
+  $('#tie-mode').addEventListener('change', (event) => {
+    if (!['shared', 'order'].includes(event.target.value)) return;
+    board.rules.tieMode = event.target.value;
+    save(); render();
+  });
 
   async function renameBoard() {
     const name = await askInput({ title: t('renameBoard'), description: t('renameBoardDescription'), label: t('boardName'), value: board.title, validate: validateName });
@@ -339,16 +505,19 @@
     if (!button || !group) return;
 
     if (button.classList.contains('plus') || button.classList.contains('minus')) {
-      const next = group.score + (button.classList.contains('plus') ? 1 : -1);
+      const next = group.score + (button.classList.contains('plus') ? board.rules.step : -board.rules.step);
+      if (!board.rules.allowNegative && next < 0 && next < group.score) { showToast(t('negativeBlocked')); return; }
       if (Math.abs(next) > MAX_SCORE) { showToast(t('scoreLimit')); return; }
+      const before = group.score;
       group.roundScores[board.round - 1] += next - group.score;
-      group.score = next; save(); render(); return;
+      group.score = next; recordScore(group, before, 'adjust'); save(); render(); return;
     }
     if (button.classList.contains('score-value')) {
       const value = await askInput({ title: t('setScoreTitle'), description: t('setScoreDescription', { name: group.name }), label: t('scoreLabel'), value: String(group.score), type: 'number', validate: validateScore });
       if (value === null) return;
+      const before = group.score;
       group.roundScores[board.round - 1] += Number(value) - group.score;
-      group.score = Number(value); save(); render(); showToast(t('scoreUpdated')); return;
+      group.score = Number(value); recordScore(group, before, 'set'); save(); render(); showToast(t('scoreUpdated')); return;
     }
     if (button.classList.contains('rename-group')) {
       const name = await askInput({ title: t('renameGroup'), description: t('renameGroupDescription'), label: t('groupName'), value: group.name, validate: validateName });
@@ -365,7 +534,7 @@
 
   $('#reset-scores').addEventListener('click', async () => {
     if (await askConfirm(t('resetTitle'), t('resetDescription'), t('resetAll'))) {
-      board.groups.forEach((group) => { group.score = 0; group.roundScores.fill(0); });
+      board.groups.forEach((group) => { const before = group.score; group.score = 0; group.roundScores.fill(0); recordScore(group, before, 'reset'); });
       save(); render(); showToast(t('scoresReset'));
     }
   });
@@ -374,7 +543,9 @@
     if (!await askConfirm(t('clearDataTitle'), t('clearDataDescription'), t('clearLocalData'))) return;
     try {
       localStorage.removeItem(STORAGE_KEY);
-      board = initialBoard();
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+      collection = emptyCollection();
+      board = collection.boards[0].board;
       storageFailed = false;
       $('#save-status').textContent = t('saved');
       render();
@@ -466,7 +637,7 @@
     const button = $('#export-image');
     button.disabled = true;
     try {
-      const sorted = [...board.groups].sort((a, b) => b.score - a.score);
+      const sorted = sortedGroups();
       const canvas = document.createElement('canvas');
       canvas.width = 1200;
       canvas.height = 330 + Math.max(sorted.length, 1) * 92 + 80;
@@ -495,7 +666,7 @@
         context.fillRect(64, y, 1072, 76);
         context.fillStyle = '#a9db82';
         context.font = '700 24px sans-serif';
-        context.fillText(String(index + 1).padStart(2, '0'), 88, y + 49);
+        context.fillText(String(rankFor(sorted, index)).padStart(2, '0'), 88, y + 49);
         context.fillStyle = '#eef7eb';
         context.font = '600 29px sans-serif';
         context.fillText(fitText(context, group.name, 680), 155, y + 49);
@@ -537,6 +708,7 @@
       return;
     }
     if (await askConfirm(t('importTitle'), t('importDescription', { title: imported.title }), t('confirmImport'))) {
+      collection.boards.find((entry) => entry.id === collection.activeId).board = imported;
       board = imported; save(); render(); showToast(t('imported'));
     }
   });

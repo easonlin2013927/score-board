@@ -3,6 +3,7 @@
 | 素材 | 用途 | 來源與注意事項 |
 | --- | --- | --- |
 | `favicon.svg` | 網站圖示 | 專案儲存庫內的 SVG 圖形；目前沒有外部圖片請求。 |
+| `icons/icon-192.png`、`icons/icon-512.png` | 可安裝網站圖示 | 由 `tools/make-pwa-icons.py` 依 `favicon.svg` 的四格幾何圖形產生。 |
 | `index.html` 內的 SVG symbols | 操作圖示 | 與網站程式一同維護的線條圖示；按鈕的文字或無障礙名稱負責說明動作。 |
 | `docs/readme-hero.svg`、`docs/readme-features.svg` | GitHub 文件插圖 | 專案儲存庫內的向量插圖；README 已提供替代文字。 |
 
