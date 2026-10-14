@@ -15,7 +15,7 @@
   <circle cx="1070" cy="315" r="180" fill="#826ad9" opacity=".08"/>
   <path d="M0 280c150-65 250-50 370 40s250 85 410-5 270-30 420 25" fill="none" stroke="#91c985" stroke-opacity=".13" stroke-width="2"/>
   <g font-family="Arial, Helvetica, sans-serif">
-    <rect x="66" y="48" width="207" height="31" rx="15.5" fill="#baf477"/>
+    <rect x="66" y="48" width="244" height="31" rx="15.5" fill="#baf477"/>
     <circle cx="82" cy="63.5" r="4" fill="#214b2d"/>
     <text x="95" y="69" font-size="12" font-weight="700" letter-spacing="1.7" fill="#183320">OPEN SOURCE PROJECT</text>
     <text x="63" y="162" font-size="73" font-weight="800" letter-spacing="-5" fill="#f1f9ef">SCORE</text>
