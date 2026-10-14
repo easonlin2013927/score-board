@@ -52,6 +52,10 @@ Names and scores are saved automatically in the **current browser's** `localStor
 
 Importing replaces the current board and scores after a confirmation prompt. If old groups still appear after an update, they came from data saved in that browser; delete them in the app or clear this site's browser data.
 
+## 🔒 Data and launch information
+
+Scoreboard data stays in the current browser. Use “Clear local scoreboard data” in the sidebar to remove the board, groups, scores and timer; export a JSON backup first if you need a copy. The site has [privacy, terms, cookies and project information](https://score-board-4gz.pages.dev/legal.html). The repository also has a [launch checklist](../../LAUNCH_CHECKLIST.md) and [asset notes](../../ASSET_NOTES.md).
+
 ## ☁️ Deploy to Cloudflare Pages
 
 This repository is connected to Cloudflare Pages; pushes to `main` deploy automatically. To deploy your own copy, choose **Workers & Pages → Create application → Pages → Connect to Git**, select this repository, and use these settings:

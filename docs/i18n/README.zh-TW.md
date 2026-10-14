@@ -51,6 +51,10 @@ cd score-board
 
 匯入檔案會取代目前的記分板與分數，操作前會顯示確認視窗。若你在新版網站仍看到舊組別，那是此瀏覽器先前儲存的資料；可逐一刪除組別，或清除這個網站的瀏覽器資料。
 
+## 🔒 資料與上線資訊
+
+記分資料保存在目前瀏覽器。側邊欄的「清除本機記分資料」可刪除記分板、組別、分數與計時器；需要保留紀錄時請先匯出 JSON。網站提供[隱私說明、使用條款、Cookie 說明與專案資訊](https://score-board-4gz.pages.dev/legal.html)，另有[上線檢查清單](../../LAUNCH_CHECKLIST.md)與[素材紀錄](../../ASSET_NOTES.md)。
+
 ## ☁️ 部署到 Cloudflare Pages
 
 此專案已使用 GitHub 連接 Cloudflare Pages；推送到 `main` 後會自動部署。若你想在自己的帳戶建立相同網站，可在 **Workers & Pages → Create application → Pages → Connect to Git** 選取此 repo，使用以下設定：

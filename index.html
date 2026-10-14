@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./github-link.css" />
     <link rel="stylesheet" href="./language.css" />
     <link rel="stylesheet" href="./features.css" />
+    <link rel="stylesheet" href="./legal-links.css" />
     <script src="./i18n.js" defer></script>
     <script src="./app.js" defer></script>
   </head>
@@ -49,6 +50,7 @@
             <button class="sidebar-action" id="export-button" type="button"><svg><use href="#icon-download" /></svg><span data-i18n="exportBoard">匯出記分板</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
             <button class="sidebar-action" id="export-image" type="button"><svg><use href="#icon-download" /></svg><span data-i18n="exportImage">匯出成績圖片</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
             <button class="sidebar-action" id="import-button" type="button"><svg><use href="#icon-upload" /></svg><span data-i18n="importBoard">匯入記分板</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
+            <button class="sidebar-action clear-data-action" id="clear-data" type="button"><svg><use href="#icon-trash" /></svg><span data-i18n="clearLocalData">清除本機記分資料</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
             <input id="import-file" type="file" accept=".json,application/json" hidden />
           </div>
           <button class="sidebar-action presentation-launch" id="open-presentation" type="button"><svg><use href="#icon-trophy" /></svg><span data-i18n="presentationMode">全螢幕展示</span><svg class="action-arrow"><use href="#icon-arrow" /></svg></button>
@@ -84,12 +86,12 @@
           <div class="list-heading"><div><h2 data-i18n="groupRanking">組別排行</h2><span id="group-summary">新增組別，開始記錄分數</span></div><button class="subtle-button" id="reset-scores" type="button" data-i18n="resetAll">全部歸零</button></div>
           <div id="groups" class="groups-grid" aria-live="polite"></div>
           <div id="empty-state" class="empty-state" hidden><div class="empty-symbol">＋</div><h3 data-i18n="emptyTitle">從第一個組別開始</h3><p data-i18n="emptyDescription">建立組別後，就可以馬上開始計分。</p><button class="primary-button" id="add-group-empty" type="button"><svg><use href="#icon-plus" /></svg><span data-i18n="addGroup">新增組別</span></button></div>
-          <footer class="main-footer"><span>GOOD GAME, GREAT MOMENTS.</span><span data-i18n="localOnly">資料僅儲存在你的瀏覽器中</span></footer>
+          <footer class="main-footer"><span>GOOD GAME, GREAT MOMENTS.</span><div class="footer-details"><span data-i18n="localOnly">資料僅儲存在你的瀏覽器中</span><nav class="policy-links" aria-label="網站資訊"><a href="./legal.html#privacy" data-i18n="privacyLink">隱私說明</a><a href="./legal.html#terms" data-i18n="termsLink">使用條款</a><a href="./legal.html#cookies" data-i18n="cookiesLink">Cookie 說明</a><a href="./legal.html#about" data-i18n="aboutLink">關於專案</a></nav></div></footer>
         </section>
       </main>
     </div>
 
-    <section id="presentation-view" class="presentation-view" aria-labelledby="presentation-title" hidden>
+    <section id="presentation-view" class="presentation-view" aria-labelledby="presentation-title" tabindex="-1" hidden>
       <header class="presentation-header"><div><span class="section-kicker">LIVE SCOREBOARD</span><h2 id="presentation-title"></h2><p id="presentation-round"></p></div><button class="subtle-button" id="close-presentation" type="button" data-i18n="exitPresentation">結束展示</button></header>
       <div class="presentation-meta"><div><span data-i18n="presentationTimer">回合倒數</span><strong id="presentation-timer">05:00</strong></div><button class="primary-button" id="presentation-timer-toggle" type="button" data-i18n="timerStart">開始計時</button></div>
       <div id="presentation-groups" class="presentation-groups"></div>
@@ -104,8 +106,8 @@
       </article>
     </template>
 
-    <dialog id="input-dialog" class="modal"><form method="dialog" id="input-form"><div class="modal-head"><div><span class="eyebrow">SCOREBOARD</span><h2 id="input-title"></h2></div><button type="button" class="modal-close" data-close aria-label="關閉"><svg><use href="#icon-close" /></svg></button></div><p id="input-description" class="modal-description"></p><label id="input-label" for="input-value"></label><input id="input-value" type="text" autocomplete="off" maxlength="40" required /><p id="input-error" class="form-error" aria-live="polite"></p><div class="modal-buttons"><button type="button" class="secondary-button" data-close>取消</button><button class="primary-button" type="submit" id="input-submit">儲存</button></div></form></dialog>
-    <dialog id="confirm-dialog" class="modal"><div class="modal-head"><div><span class="eyebrow" data-i18n="pleaseConfirm">請確認</span><h2 id="confirm-title"></h2></div><button type="button" class="modal-close" data-confirm-cancel aria-label="關閉"><svg><use href="#icon-close" /></svg></button></div><p id="confirm-description" class="modal-description"></p><div class="modal-buttons"><button type="button" class="secondary-button" data-confirm-cancel>取消</button><button type="button" class="danger-button" id="confirm-accept">確認</button></div></dialog>
+    <dialog id="input-dialog" class="modal" aria-labelledby="input-title" aria-describedby="input-description"><form method="dialog" id="input-form"><div class="modal-head"><div><span class="eyebrow">SCOREBOARD</span><h2 id="input-title"></h2></div><button type="button" class="modal-close" data-close aria-label="關閉"><svg><use href="#icon-close" /></svg></button></div><p id="input-description" class="modal-description"></p><label id="input-label" for="input-value"></label><input id="input-value" type="text" autocomplete="off" maxlength="40" required aria-describedby="input-error" /><p id="input-error" class="form-error" aria-live="polite"></p><div class="modal-buttons"><button type="button" class="secondary-button" data-close>取消</button><button class="primary-button" type="submit" id="input-submit">儲存</button></div></form></dialog>
+    <dialog id="confirm-dialog" class="modal" aria-labelledby="confirm-title" aria-describedby="confirm-description"><div class="modal-head"><div><span class="eyebrow" data-i18n="pleaseConfirm">請確認</span><h2 id="confirm-title"></h2></div><button type="button" class="modal-close" data-confirm-cancel aria-label="關閉"><svg><use href="#icon-close" /></svg></button></div><p id="confirm-description" class="modal-description"></p><div class="modal-buttons"><button type="button" class="secondary-button" data-confirm-cancel>取消</button><button type="button" class="danger-button" id="confirm-accept">確認</button></div></dialog>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
   </body>
 </html>

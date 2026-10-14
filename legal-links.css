@@ -1,0 +1,10 @@
+/* Keep the interface self-contained: use installed system fonts, with no font CDN request. */
+:root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.footer-details{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem 1.5rem}
+.policy-links{display:flex;flex-wrap:wrap;gap:.35rem 1rem}
+.policy-links a{color:#b8d5aa;text-decoration:none;white-space:nowrap}
+.policy-links a:hover{color:#d4ff9d;text-decoration:underline}
+.policy-links a:focus-visible,.clear-data-action:focus-visible{outline:2px solid #d4ff9d;outline-offset:3px}
+.clear-data-action{color:#d5b9a9}
+.clear-data-action:hover{color:#ffe0ca}
+@media(max-width:700px){.footer-details{align-items:flex-start;flex-direction:column}.policy-links{gap:.7rem 1rem}}

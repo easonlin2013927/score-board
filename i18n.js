@@ -24,6 +24,14 @@
   };
   Object.keys(messages).forEach((language) => Object.assign(messages[language], featureMessages[language]));
 
+  const complianceMessages = {
+    'zh-TW': { clearLocalData: '清除本機記分資料', clearDataTitle: '清除本機記分資料？', clearDataDescription: '這會移除這台裝置儲存的記分板、組別、分數與計時器。建議先匯出 JSON 備份。語言選擇會保留。', clearDataDone: '本機記分資料已清除', clearDataFailed: '無法清除本機資料，請檢查瀏覽器儲存空間。', privacyLink: '隱私說明', termsLink: '使用條款', cookiesLink: 'Cookie 說明', aboutLink: '關於專案', siteInformation: '網站資訊' },
+    'zh-CN': { clearLocalData: '清除本地计分数据', clearDataTitle: '清除本地计分数据？', clearDataDescription: '这会移除这台设备保存的计分板、组别、分数和计时器。建议先导出 JSON 备份。语言选择会保留。', clearDataDone: '本地计分数据已清除', clearDataFailed: '无法清除本地数据，请检查浏览器存储空间。', privacyLink: '隐私说明', termsLink: '使用条款', cookiesLink: 'Cookie 说明', aboutLink: '关于项目', siteInformation: '网站信息' },
+    en: { clearLocalData: 'Clear local scoreboard data', clearDataTitle: 'Clear local scoreboard data?', clearDataDescription: 'This removes the board, groups, scores and timer saved on this device. Export a JSON backup first if needed. Your language choice stays saved.', clearDataDone: 'Local scoreboard data cleared', clearDataFailed: 'Could not clear local data. Check browser storage.', privacyLink: 'Privacy', termsLink: 'Terms', cookiesLink: 'Cookies', aboutLink: 'About', siteInformation: 'Site information' },
+    ja: { clearLocalData: '端末のスコアデータを消去', clearDataTitle: '端末のスコアデータを消去しますか？', clearDataDescription: 'この端末に保存したボード、グループ、得点、タイマーを消去します。必要なら先に JSON でバックアップしてください。言語設定は残ります。', clearDataDone: '端末のスコアデータを消去しました', clearDataFailed: '端末のデータを消去できません。ブラウザーの保存領域を確認してください。', privacyLink: 'プライバシー', termsLink: '利用条件', cookiesLink: 'Cookie', aboutLink: 'プロジェクトについて', siteInformation: 'サイト情報' }
+  };
+  Object.keys(messages).forEach((language) => Object.assign(messages[language], complianceMessages[language]));
+
   const languageTags = { 'zh-TW': 'zh-Hant', 'zh-CN': 'zh-Hans', en: 'en', ja: 'ja' };
   const STORAGE_KEY = 'scoreboard.language';
 
@@ -60,6 +68,7 @@
     document.querySelector('.sidebar').setAttribute('aria-label', t('boardTools'));
     document.querySelector('.overview').setAttribute('aria-label', t('scoreOverview'));
     document.querySelector('.sidebar-github').setAttribute('aria-label', t('githubAria'));
+    document.querySelector('.policy-links').setAttribute('aria-label', t('siteInformation'));
     document.querySelector('#rename-board').setAttribute('aria-label', t('renameBoard'));
     document.querySelector('#rename-board').title = t('renameBoard');
     document.querySelector('meta[name="description"]').content = t('metaDescription');

@@ -370,6 +370,20 @@
     }
   });
 
+  $('#clear-data').addEventListener('click', async () => {
+    if (!await askConfirm(t('clearDataTitle'), t('clearDataDescription'), t('clearLocalData'))) return;
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      board = initialBoard();
+      storageFailed = false;
+      $('#save-status').textContent = t('saved');
+      render();
+      showToast(t('clearDataDone'));
+    } catch {
+      showToast(t('clearDataFailed'));
+    }
+  });
+
   $('#timer-toggle').addEventListener('click', toggleTimer);
   $('#presentation-timer-toggle').addEventListener('click', toggleTimer);
   $('#timer-reset').addEventListener('click', () => {
@@ -402,19 +416,30 @@
   });
 
   const presentationView = $('#presentation-view');
+  let presentationOpener = null;
   $('#open-presentation').addEventListener('click', async () => {
+    presentationOpener = document.activeElement;
     presentationView.hidden = false;
     renderPresentation();
     renderTimer();
+    $('.app-shell').inert = true;
+    $('#close-presentation').focus();
     try { await presentationView.requestFullscreen?.(); } catch { /* Keep the full viewport overlay available. */ }
   });
   function closePresentation() {
-    if (document.fullscreenElement === presentationView) document.exitFullscreen?.();
+    if (presentationView.hidden) return;
+    if (document.fullscreenElement === presentationView) document.exitFullscreen?.().catch(() => {});
     presentationView.hidden = true;
+    $('.app-shell').inert = false;
+    presentationOpener?.focus();
+    presentationOpener = null;
   }
   $('#close-presentation').addEventListener('click', closePresentation);
   document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement) presentationView.hidden = true;
+    if (!document.fullscreenElement) closePresentation();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !presentationView.hidden) closePresentation();
   });
 
   $('#export-button').addEventListener('click', () => {

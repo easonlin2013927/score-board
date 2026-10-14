@@ -52,6 +52,10 @@ cd score-board
 
 导入文件会替换当前的记分板和分数，操作前会出现确认窗口。如果更新网站后仍看到旧组别，那是当前浏览器之前保存的数据；可以在应用中逐一删除，或清除此网站的浏览器数据。
 
+## 🔒 数据与上线信息
+
+计分数据保存在当前浏览器。侧边栏的“清除本地计分数据”可以删除计分板、组别、分数和计时器；需要保留记录时请先导出 JSON。网站提供[隐私说明、使用条款、Cookie 说明和项目信息](https://score-board-4gz.pages.dev/legal.html)，仓库还有[上线检查清单](../../LAUNCH_CHECKLIST.md)与[素材记录](../../ASSET_NOTES.md)。
+
 ## ☁️ 部署到 Cloudflare Pages
 
 本仓库已连接 Cloudflare Pages；推送到 `main` 后会自动部署。若想在自己的账号中部署，可选择 **Workers & Pages → Create application → Pages → Connect to Git**，连接本仓库并使用以下设置：
