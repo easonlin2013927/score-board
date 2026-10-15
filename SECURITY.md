@@ -1,21 +1,12 @@
-# Security Policy
+# Security policy / 安全政策
 
-## Supported Versions
+Scoreboard is a static website without numbered releases. Security fixes apply to the current `main` branch and the [live site](https://score-board-4gz.pages.dev/).
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+## Report privately / 私下回報
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+Use **Report a vulnerability** on the [Security Advisories page](https://github.com/easonlin2013927/score-board/security/advisories). This sends the report privately to the repository maintainers. Include the affected page or feature, steps to reproduce, possible impact, and a minimal example if useful. Do not post exploit details, personal data, or a full scoreboard JSON backup in a public Issue.
 
-## Reporting a Vulnerability
-
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+- **繁體中文：**請到「Security Advisories」點選「Report a vulnerability」私下回報。一般錯誤與功能建議請使用 [Issues](https://github.com/easonlin2013927/score-board/issues/new/choose)。
+- **简体中文：**请在「Security Advisories」点击「Report a vulnerability」私下报告。普通问题与功能建议请使用 [Issues](https://github.com/easonlin2013927/score-board/issues/new/choose)。
+- **English:** Use the private vulnerability report for security findings. Use [Issues](https://github.com/easonlin2013927/score-board/issues/new/choose) for ordinary bugs and feature requests.
+- **日本語：**セキュリティー上の問題は「Report a vulnerability」から非公開で報告してください。通常の不具合や機能提案は [Issues](https://github.com/easonlin2013927/score-board/issues/new/choose) をご利用ください。
