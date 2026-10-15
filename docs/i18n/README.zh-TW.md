@@ -1,5 +1,7 @@
 [🌐 語言選擇](../../README.md) · **繁體中文** · [简体中文](./README.zh-CN.md) · [English](./README.en.md) · [日本語](./README.ja.md)
 
+[📚 Wiki 使用指南](https://github.com/easonlin2013927/score-board/wiki)
+
 <p align="center"><img src="../readme-hero-v2.svg" alt="Scoreboard 彩色記分板橫幅" width="100%" /></p>
 
 <h1 align="center">Scoreboard · 活動記分板</h1>

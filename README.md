@@ -17,6 +17,7 @@
 
 <p align="center">
   <a href="https://score-board-4gz.pages.dev/"><img src="https://img.shields.io/badge/LIVE%20DEMO-Cloudflare%20Pages-3aa9b5?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Open the live scoreboard" /></a>
+  <a href="https://github.com/easonlin2013927/score-board/wiki"><img src="https://img.shields.io/badge/GUIDES-GitHub%20Wiki-9a79d8?style=for-the-badge&logo=github&logoColor=white" alt="Open the Scoreboard Wiki" /></a>
   <img src="https://img.shields.io/badge/HTML-Static%20Site-e8794f?style=for-the-badge&logo=html5&logoColor=white" alt="Static HTML site" />
   <img src="https://img.shields.io/badge/CSS-Responsive-9275da?style=for-the-badge&logo=css&logoColor=white" alt="Responsive CSS" />
   <img src="https://img.shields.io/badge/JavaScript-No%20Build-f0c454?style=for-the-badge&logo=javascript&logoColor=222222" alt="JavaScript with no build step" />

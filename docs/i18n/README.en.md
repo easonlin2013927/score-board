@@ -1,5 +1,7 @@
 [🌐 Choose a language](../../README.md) · [繁體中文](./README.zh-TW.md) · [简体中文](./README.zh-CN.md) · **English** · [日本語](./README.ja.md)
 
+[📚 Wiki guide (Traditional Chinese)](https://github.com/easonlin2013927/score-board/wiki)
+
 <p align="center"><img src="../readme-hero-v2.svg" alt="Colorful Scoreboard project banner" width="100%" /></p>
 
 <h1 align="center">Scoreboard · Live scores for every event</h1>
