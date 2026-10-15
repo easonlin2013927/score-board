@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "📚 使用指南 / 使用指南 / Wiki guide / Wiki ガイド"
+    url: "https://github.com/easonlin2013927/score-board/wiki"
+    about: "先查看操作說明與常見問題 / Read the guide and FAQ first / ガイドと FAQ を確認"
+  - name: "🟢 開啟網站 / 打开网站 / Open app / アプリを開く"
+    url: "https://score-board-4gz.pages.dev/"
+    about: "前往正式記分板 / Open the live scoreboard / 公開サイトを開く"

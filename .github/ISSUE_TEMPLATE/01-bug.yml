@@ -1,0 +1,41 @@
+name: "🐛 錯誤回報 / 错误反馈 / Bug / 不具合"
+description: "回報功能異常 / 报告问题 / Report a bug / 不具合を報告"
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        請先查看 [Wiki](https://github.com/easonlin2013927/score-board/wiki) 是否已有解答。可使用繁體中文、简体中文、English 或日本語填寫。請勿公開個人資料或完整的 JSON 備份。
+
+        Please check the Wiki first. Write in any of the four supported languages, and remove private information from screenshots or exported files.
+  - type: textarea
+    id: steps
+    attributes:
+      label: "重現步驟 / 复现步骤 / Steps to reproduce / 再現手順"
+      description: "從開啟網站開始，依序列出操作。 / List the actions from opening the site."
+      placeholder: "1. …\n2. …\n3. …"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "預期結果 / 预期结果 / Expected result / 期待した結果"
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: "實際結果 / 实际结果 / Actual result / 実際の結果"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: "瀏覽器與裝置 / 浏览器与设备 / Browser and device / ブラウザーと端末"
+      placeholder: "例：Chrome / Windows；Example: Safari / iPhone"
+  - type: textarea
+    id: evidence
+    attributes:
+      label: "畫面或補充資訊 / 截图或补充信息 / Screenshots or details / 画像・補足"
+      description: "可拖曳圖片到此欄，請先遮蔽私人資料。 / Attach screenshots after removing private information."

@@ -1,0 +1,22 @@
+name: "💬 使用提問 / 使用提问 / Question / 質問"
+description: "詢問使用方式 / 咨询使用方法 / Ask a question / 使い方を質問"
+title: "[Question] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        請先閱讀 [Wiki](https://github.com/easonlin2013927/score-board/wiki)。可使用繁體中文、简体中文、English 或日本語提問。
+
+        Check the Wiki first, then ask in any supported language. Do not include personal data or full JSON backups.
+  - type: textarea
+    id: question
+    attributes:
+      label: "你的問題 / 你的问题 / Your question / 質問内容"
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: "相關情境 / 相关情境 / Context / 状況"
+      description: "說明你想完成什麼，以及已經嘗試的方法。 / Explain your goal and what you have tried."

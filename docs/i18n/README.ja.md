@@ -1,6 +1,6 @@
 [🌐 言語を選択](../../README.md) · [繁體中文](./README.zh-TW.md) · [简体中文](./README.zh-CN.md) · [English](./README.en.md) · **日本語**
 
-[📚 Wiki ガイド（繁体字中国語）](https://github.com/easonlin2013927/score-board/wiki)
+[📚 Wiki ガイド（繁体字中国語）](https://github.com/easonlin2013927/score-board/wiki) · [🐛 不具合・機能提案](https://github.com/easonlin2013927/score-board/issues/new/choose)
 
 <p align="center"><img src="../readme-hero-v2.svg" alt="カラフルなスコアボードのバナー" width="100%" /></p>
 

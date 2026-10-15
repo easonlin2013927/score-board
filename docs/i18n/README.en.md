@@ -1,6 +1,6 @@
 [🌐 Choose a language](../../README.md) · [繁體中文](./README.zh-TW.md) · [简体中文](./README.zh-CN.md) · **English** · [日本語](./README.ja.md)
 
-[📚 Wiki guide (Traditional Chinese)](https://github.com/easonlin2013927/score-board/wiki)
+[📚 Wiki guide (Traditional Chinese)](https://github.com/easonlin2013927/score-board/wiki) · [🐛 Report an issue or idea](https://github.com/easonlin2013927/score-board/issues/new/choose)
 
 <p align="center"><img src="../readme-hero-v2.svg" alt="Colorful Scoreboard project banner" width="100%" /></p>
 

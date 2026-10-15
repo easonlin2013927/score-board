@@ -1,0 +1,30 @@
+name: "✨ 功能建議 / 功能建议 / Feature / 機能提案"
+description: "提出改進想法 / 提出改进建议 / Suggest an improvement / 改善を提案"
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        歡迎使用繁體中文、简体中文、English 或日本語提出想法。請先搜尋現有 Issues，避免重複提案。
+
+        Ideas are welcome in any supported language. Please search existing issues before posting.
+  - type: textarea
+    id: need
+    attributes:
+      label: "遇到的需求 / 使用需求 / User need / 解決したいこと"
+      description: "說明使用情境和目前遇到的困難。 / Describe the situation and what is difficult today."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: "建議的功能 / 建议的功能 / Proposed feature / 提案する機能"
+      description: "描述你希望使用者如何操作，以及預期的結果。 / Describe the interaction and expected result."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "其他做法 / 其他做法 / Alternatives / 代替案"
+      description: "選填。 / Optional."
