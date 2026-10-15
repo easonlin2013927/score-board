@@ -16,7 +16,7 @@
 <p align="center">A colorful, local-first scoreboard for events and teams.</p>
 
 <p align="center">
-  <a href="https://score-board-4gz.pages.dev/"><img src="https://img.shields.io/badge/LIVE%20DEMO-Cloudflare%20Pages-3aa9b5?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Open the live scoreboard" /></a>
+  <a href="https://easonlin2013927.github.io/score-board/"><img src="https://img.shields.io/badge/LIVE%20DEMO-GitHub%20Pages-3aa9b5?style=for-the-badge&logo=github&logoColor=white" alt="Open the live scoreboard" /></a>
   <a href="https://github.com/easonlin2013927/score-board/wiki"><img src="https://img.shields.io/badge/GUIDES-GitHub%20Wiki-9a79d8?style=for-the-badge&logo=github&logoColor=white" alt="Open the Scoreboard Wiki" /></a>
   <a href="https://github.com/easonlin2013927/score-board/issues/new/choose"><img src="https://img.shields.io/badge/FEEDBACK-GitHub%20Issues-eb768e?style=for-the-badge&logo=github&logoColor=white" alt="Report a bug or suggest a feature" /></a>
   <img src="https://img.shields.io/badge/HTML-Static%20Site-e8794f?style=for-the-badge&logo=html5&logoColor=white" alt="Static HTML site" />
@@ -32,6 +32,8 @@
 
 <p align="center">Documentation and the app are available in Traditional Chinese, Simplified Chinese, English, and Japanese. Choose the app language from the selector in the top bar.</p>
 
-<p align="center"><a href="https://score-board-4gz.pages.dev/legal.html#privacy">Privacy</a> · <a href="https://score-board-4gz.pages.dev/legal.html#terms">Terms</a> · <a href="https://score-board-4gz.pages.dev/legal.html#cookies">Cookies</a> · <a href="./LAUNCH_CHECKLIST.md">Launch checklist</a> · <a href="./ASSET_NOTES.md">Asset notes</a></p>
+<p align="center"><a href="https://easonlin2013927.github.io/score-board/legal.html#privacy">Privacy</a> · <a href="https://easonlin2013927.github.io/score-board/legal.html#terms">Terms</a> · <a href="https://easonlin2013927.github.io/score-board/legal.html#cookies">Cookies</a> · <a href="./LAUNCH_CHECKLIST.md">Launch checklist</a> · <a href="./ASSET_NOTES.md">Asset notes</a></p>
 
 <p align="center">Board data stays in this browser until you clear it. Export a JSON backup before clearing local scoreboard data.</p>
+
+<p align="center">The previous and current site addresses have separate browser storage. Export each board as JSON from the old site before switching if you need to keep its scores.</p>

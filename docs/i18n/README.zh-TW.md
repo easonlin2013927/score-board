@@ -8,7 +8,7 @@
 
 <p align="center">一個輕巧、好上手的即時記分板。打開網站，建立組別，開始記錄每一分。</p>
 
-<p align="center"><a href="https://score-board-4gz.pages.dev/"><img src="https://img.shields.io/badge/立即使用-Cloudflare%20Pages-3aa9b5?style=for-the-badge&logo=cloudflare&logoColor=white" alt="開啟線上版本" /></a></p>
+<p align="center"><a href="https://easonlin2013927.github.io/score-board/"><img src="https://img.shields.io/badge/立即使用-GitHub%20Pages-3aa9b5?style=for-the-badge&logo=github&logoColor=white" alt="開啟線上版本" /></a></p>
 
 ## ✨ 功能總覽
 
@@ -33,7 +33,9 @@
 
 ## 🎮 開始使用
 
-**線上使用：** 前往 **[score-board-4gz.pages.dev](https://score-board-4gz.pages.dev/)**，不需要註冊或安裝。
+**線上使用：** 前往 **[easonlin2013927.github.io/score-board](https://easonlin2013927.github.io/score-board/)**，不需要註冊或安裝。
+
+**更換網址：** 瀏覽器會按網站網址分開保存資料。若你曾在舊網址記分，請先逐一匯出 JSON，再到新網址匯入。
 
 **在本機開啟：**
 
@@ -59,21 +61,13 @@ cd score-board
 
 ## 🔒 資料與上線資訊
 
-記分資料保存在目前瀏覽器。側邊欄的「清除所有本機記分板資料」會刪除全部記分板；需要保留紀錄時請先逐一匯出 JSON。每次匯入或匯出只處理目前選取的記分板。離線安裝需使用 HTTPS 網站或本機伺服器；直接開啟 `index.html` 仍可使用一般記分功能。網站提供[隱私說明、使用條款、Cookie 說明與專案資訊](https://score-board-4gz.pages.dev/legal.html)，另有[上線檢查清單](../../LAUNCH_CHECKLIST.md)與[素材紀錄](../../ASSET_NOTES.md)。
+記分資料保存在目前瀏覽器。側邊欄的「清除所有本機記分板資料」會刪除全部記分板；需要保留紀錄時請先逐一匯出 JSON。每次匯入或匯出只處理目前選取的記分板。離線安裝需使用 HTTPS 網站或本機伺服器；直接開啟 `index.html` 仍可使用一般記分功能。網站提供[隱私說明、使用條款、Cookie 說明與專案資訊](https://easonlin2013927.github.io/score-board/legal.html)，另有[上線檢查清單](../../LAUNCH_CHECKLIST.md)與[素材紀錄](../../ASSET_NOTES.md)。
 
-## ☁️ 部署到 Cloudflare Pages
+## 🚀 部署到 GitHub Pages
 
-此專案已使用 GitHub 連接 Cloudflare Pages；推送到 `main` 後會自動部署。若你想在自己的帳戶建立相同網站，可在 **Workers & Pages → Create application → Pages → Connect to Git** 選取此 repo，使用以下設定：
+此儲存庫使用 GitHub Pages，從 `main` 分支的 `/(root)` 自動發布。若想部署自己的版本，先 Fork 此儲存庫，再到 **Settings → Pages → Build and deployment**，選擇 **Deploy from a branch**、`main` 和 `/(root)`，按 **Save**。這是純靜態網站，不需要建置指令。
 
-| 設定欄位 | 值 |
-| :--- | :--- |
-| Production branch | `main` |
-| Framework preset | `None` |
-| Build command | 留白 |
-| Build output directory | repo 根目錄 `/`；若畫面已顯示 `/` 前綴，輸入框留白即可 |
-| Root directory、Environment variables | 留白 |
-
-部署後可在專案的 **Custom domains → Set up a domain** 加入自己的網域。根網域與子網域的 DNS 設定方式請參考 [Cloudflare 官方說明](https://developers.cloudflare.com/pages/configuration/custom-domains/)。
+日後可在 **Settings → Pages → Custom domain** 加入自己的網域，再依 [GitHub 自訂網域文件](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)設定 DNS。
 
 ## 🧩 專案結構
 

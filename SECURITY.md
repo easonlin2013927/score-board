@@ -1,6 +1,6 @@
 # Security policy / 安全政策
 
-Scoreboard is a static website without numbered releases. Security fixes apply to the current `main` branch and the [live site](https://score-board-4gz.pages.dev/).
+Scoreboard is a static website without numbered releases. Security fixes apply to the current `main` branch and the [live site](https://easonlin2013927.github.io/score-board/).
 
 ## Report privately / 私下回報
 

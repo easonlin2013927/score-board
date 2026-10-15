@@ -8,7 +8,7 @@
 
 <p align="center">チームを作成し、得点を記録できるシンプルなスコアボードです。</p>
 
-<p align="center"><a href="https://score-board-4gz.pages.dev/"><img src="https://img.shields.io/badge/OPEN%20LIVE%20DEMO-Cloudflare%20Pages-3aa9b5?style=for-the-badge&logo=cloudflare&logoColor=white" alt="公開中のスコアボードを開く" /></a></p>
+<p align="center"><a href="https://easonlin2013927.github.io/score-board/"><img src="https://img.shields.io/badge/OPEN%20LIVE%20DEMO-GitHub%20Pages-3aa9b5?style=for-the-badge&logo=github&logoColor=white" alt="公開中のスコアボードを開く" /></a></p>
 
 > アプリは繁体字中国語、簡体字中国語、英語、日本語に対応しています。画面右上で切り替えられます。入力済みの名前と得点は変わりません。
 
@@ -34,7 +34,9 @@
 
 ## 🎮 使い始める
 
-**オンライン：** **[score-board-4gz.pages.dev](https://score-board-4gz.pages.dev/)** を開いてください。登録やインストールは不要です。
+**オンライン：** **[easonlin2013927.github.io/score-board](https://easonlin2013927.github.io/score-board/)** を開いてください。登録やインストールは不要です。
+
+**URL の変更：** ブラウザーの保存データはサイトの URL ごとに分かれます。旧 URL で記録したボードを残す場合、各ボードを JSON に書き出し、新 URL で読み込んでください。
 
 **ローカル：**
 
@@ -60,21 +62,13 @@ cd score-board
 
 ## 🔒 データと公開前の情報
 
-スコアデータは現在のブラウザーに保存されます。サイドバーの「端末の全ボードデータを消去」は全ボードを削除します。必要なら各ボードを先に JSON で保存してください。読み込みと書き出しは選択中のボードだけが対象です。オフラインでのインストールには HTTPS またはローカルサーバーが必要です。`index.html` を直接開いても通常の得点管理はできます。サイトには[プライバシー、利用条件、Cookie、プロジェクト情報](https://score-board-4gz.pages.dev/legal.html)があり、リポジトリには[公開前チェックリスト](../../LAUNCH_CHECKLIST.md)と[素材の記録](../../ASSET_NOTES.md)があります。
+スコアデータは現在のブラウザーに保存されます。サイドバーの「端末の全ボードデータを消去」は全ボードを削除します。必要なら各ボードを先に JSON で保存してください。読み込みと書き出しは選択中のボードだけが対象です。オフラインでのインストールには HTTPS またはローカルサーバーが必要です。`index.html` を直接開いても通常の得点管理はできます。サイトには[プライバシー、利用条件、Cookie、プロジェクト情報](https://easonlin2013927.github.io/score-board/legal.html)があり、リポジトリには[公開前チェックリスト](../../LAUNCH_CHECKLIST.md)と[素材の記録](../../ASSET_NOTES.md)があります。
 
-## ☁️ Cloudflare Pages にデプロイ
+## 🚀 GitHub Pages にデプロイ
 
-このリポジトリは Cloudflare Pages と連携済みで、`main` へのプッシュで自動デプロイされます。自分のアカウントで公開する場合は **Workers & Pages → Create application → Pages → Connect to Git** でこのリポジトリを選び、次のように設定します。
+このリポジトリは GitHub Pages を使用し、`main` ブランチの `/(root)` から自動公開されます。自分のサイトを公開する場合はリポジトリを Fork し、**Settings → Pages → Build and deployment** で **Deploy from a branch**、`main`、`/(root)` を選んで **Save** を押してください。静的サイトなのでビルドコマンドは不要です。
 
-| 設定 | 値 |
-| :--- | :--- |
-| Production branch | `main` |
-| Framework preset | `None` |
-| Build command | 空欄 |
-| Build output directory | リポジトリのルート `/`。画面に `/` が接頭辞として表示されている場合、入力欄は空欄 |
-| Root directory、Environment variables | 空欄 |
-
-独自ドメインは Pages プロジェクトの **Custom domains → Set up a domain** から追加できます。DNS の要件は [Cloudflare 公式ガイド](https://developers.cloudflare.com/pages/configuration/custom-domains/)を参照してください。
+独自ドメインは **Settings → Pages → Custom domain** で設定し、[GitHub の公式ガイド](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)に従って DNS を設定できます。
 
 ## 🧩 ファイル構成
 

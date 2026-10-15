@@ -8,7 +8,7 @@
 
 <p align="center">一个轻巧、易用的实时记分板。打开网站，创建组别，记录每一分。</p>
 
-<p align="center"><a href="https://score-board-4gz.pages.dev/"><img src="https://img.shields.io/badge/OPEN%20LIVE%20DEMO-Cloudflare%20Pages-3aa9b5?style=for-the-badge&logo=cloudflare&logoColor=white" alt="打开在线记分板" /></a></p>
+<p align="center"><a href="https://easonlin2013927.github.io/score-board/"><img src="https://img.shields.io/badge/OPEN%20LIVE%20DEMO-GitHub%20Pages-3aa9b5?style=for-the-badge&logo=github&logoColor=white" alt="打开在线记分板" /></a></p>
 
 > 网站支持繁体中文、简体中文、英语和日语。可在右上角切换语言，记分板名称、组别名称和分数不会因此改变。
 
@@ -34,7 +34,9 @@
 
 ## 🎮 开始使用
 
-**在线使用：** 打开 **[score-board-4gz.pages.dev](https://score-board-4gz.pages.dev/)**，无需注册或安装。
+**在线使用：** 打开 **[easonlin2013927.github.io/score-board](https://easonlin2013927.github.io/score-board/)**，无需注册或安装。
+
+**更换网址：** 浏览器会按网站网址分别保存数据。若曾在旧网址计分，请先逐一导出 JSON，再到新网址导入。
 
 **在本地打开：**
 
@@ -60,21 +62,13 @@ cd score-board
 
 ## 🔒 数据与上线信息
 
-计分数据保存在当前浏览器。侧边栏的“清除所有本地计分板数据”会删除全部计分板；需要保留记录时请先逐一导出 JSON。每次导入或导出只处理当前选中的计分板。离线安装需要使用 HTTPS 网站或本地服务器；直接打开 `index.html` 仍可使用一般计分功能。网站提供[隐私说明、使用条款、Cookie 说明和项目信息](https://score-board-4gz.pages.dev/legal.html)，仓库还有[上线检查清单](../../LAUNCH_CHECKLIST.md)与[素材记录](../../ASSET_NOTES.md)。
+计分数据保存在当前浏览器。侧边栏的“清除所有本地计分板数据”会删除全部计分板；需要保留记录时请先逐一导出 JSON。每次导入或导出只处理当前选中的计分板。离线安装需要使用 HTTPS 网站或本地服务器；直接打开 `index.html` 仍可使用一般计分功能。网站提供[隐私说明、使用条款、Cookie 说明和项目信息](https://easonlin2013927.github.io/score-board/legal.html)，仓库还有[上线检查清单](../../LAUNCH_CHECKLIST.md)与[素材记录](../../ASSET_NOTES.md)。
 
-## ☁️ 部署到 Cloudflare Pages
+## 🚀 部署到 GitHub Pages
 
-本仓库已连接 Cloudflare Pages；推送到 `main` 后会自动部署。若想在自己的账号中部署，可选择 **Workers & Pages → Create application → Pages → Connect to Git**，连接本仓库并使用以下设置：
+本仓库使用 GitHub Pages，从 `main` 分支的 `/(root)` 自动发布。若要部署自己的版本，请先 Fork 本仓库，然后在 **Settings → Pages → Build and deployment** 选择 **Deploy from a branch**、`main` 和 `/(root)`，点击 **Save**。这是纯静态网站，无需构建命令。
 
-| 设置项 | 值 |
-| :--- | :--- |
-| Production branch | `main` |
-| Framework preset | `None` |
-| Build command | 留空 |
-| Build output directory | 仓库根目录 `/`；若界面已显示 `/` 前缀，输入框留空即可 |
-| Root directory、Environment variables | 留空 |
-
-部署后可在 Pages 项目的 **Custom domains → Set up a domain** 添加自己的域名。根域名和子域名的 DNS 要求请参阅 [Cloudflare 官方文档](https://developers.cloudflare.com/pages/configuration/custom-domains/)。
+之后可在 **Settings → Pages → Custom domain** 添加自己的域名，并按 [GitHub 自定义域名文档](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)配置 DNS。
 
 ## 🧩 项目结构
 

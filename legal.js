@@ -3,13 +3,14 @@
 
   const content = {
     'zh-TW': {
-      lang: 'zh-Hant', title: '網站資訊', intro: '了解記分資料如何儲存、網站如何運作，以及如何聯絡專案維護者。', back: '返回記分板', language: '語言', updated: '更新日期：2026-10-14', nav: '頁面段落',
+      lang: 'zh-Hant', title: '網站資訊', intro: '了解記分資料如何儲存、網站如何運作，以及如何聯絡專案維護者。', back: '返回記分板', language: '語言', updated: '更新日期：2026-10-15', nav: '頁面段落',
       sections: {
         privacy: { title: '隱私說明', parts: [
           ['儲存的資料', '所有記分板的名稱、組別、分數、回合、計時器、計分規則與最近 200 筆分數變更紀錄存在您目前瀏覽器的 localStorage（scoreboard.collection.v1）。舊版資料會從 scoreboard.v1 搬入新格式。語言偏好另存於 scoreboard.language。離線功能會在瀏覽器快取網站檔案。此網站沒有帳號，也沒有把記分資料傳到專案自己的伺服器。'],
           ['匯入、匯出與刪除', '匯入的 JSON 由瀏覽器在本機讀取，並取代目前選取的記分板；每次匯出 JSON 或 PNG 只包含目前選取的記分板。若您自行分享匯出檔案，接收者將能看到其中內容。側邊欄的「清除所有本機記分板資料」會刪除全部記分板並保留語言設定。清除瀏覽器網站資料也會移除語言設定與離線快取。'],
-          ['主機與外部連結', '網站由 Cloudflare Pages 提供。Cloudflare 可能為連線、安全及服務運作處理技術資料；詳細做法請參考 Cloudflare 的隱私與 Cookie 文件。只有在您點選 GitHub 連結時，瀏覽器才會前往 GitHub。網站程式目前沒有分析追蹤、廣告、第三方嵌入或遠端字型。']
-        ], links: [['Cloudflare 隱私政策', 'https://www.cloudflare.com/privacypolicy/']] },
+          ['網址與本機資料', '不同網站網址有各自的瀏覽器儲存空間。從舊網址改用 GitHub Pages 網址時，組別與分數不會自動轉移；需要保留資料時，請先在舊站逐一匯出 JSON，再到新站匯入。'],
+          ['主機與外部連結', '網站由 GitHub Pages 提供。GitHub 可能為提供網站及維護安全處理連線等技術資料；詳見 GitHub 隱私聲明。網站程式目前沒有分析追蹤、廣告、第三方嵌入或遠端字型。']
+        ], links: [['GitHub 隱私聲明', 'https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement']] },
         terms: { title: '使用條款', parts: [
           ['使用方式', 'Scoreboard 是提供活動記分的免費工具。請自行確認輸入內容的準確性及使用權限，並在需要保留紀錄時匯出 JSON 備份。'],
           ['服務狀態', '網站與功能可能更新或暫時無法使用。本機資料會受瀏覽器設定、清除網站資料及裝置狀態影響；請勿把它當作唯一備份。'],
@@ -17,8 +18,8 @@
         ] },
         cookies: { title: 'Cookie 說明', parts: [
           ['網站程式', '目前的記分板程式不設定 Cookie，使用 localStorage 保存記分資料與語言偏好，也沒有加入分析或廣告追蹤程式。'],
-          ['託管服務', 'Cloudflare 可能依啟用的安全功能設定必要的 Cookie。Cloudflare 的文件列出相關 Cookie 及其用途；實際情況可能隨託管設定變動。']
-        ], links: [['Cloudflare Cookie 文件', 'https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/']] },
+          ['託管服務', '網站由 GitHub Pages 託管；GitHub 的 Cookie 實務與資料處理方式請參考其官方文件。實際 Cookie 狀況可能因瀏覽器與服務設定而異。']
+        ], links: [['GitHub Cookie 文件', 'https://docs.github.com/en/site-policy/privacy-policies/github-cookies']] },
         about: { title: '關於專案', parts: [
           ['維護與聯絡', '這是由 GitHub 帳號 easonlin2013927 維護的公開記分板專案。專案未提供公司名稱、地址或法人身分，因此這裡不臆造公司資料。功能與資料處理問題可在 GitHub Issues 回報。'],
           ['素材', '網站介面的圖示和專案文件中的插圖由此專案提供。素材來源與後續使用注意事項記錄在儲存庫的 ASSET_NOTES.md。']
@@ -26,13 +27,14 @@
       }
     },
     'zh-CN': {
-      lang: 'zh-Hans', title: '网站信息', intro: '了解计分数据如何存储、网站如何运作，以及如何联系项目维护者。', back: '返回计分板', language: '语言', updated: '更新日期：2026-10-14', nav: '页面章节',
+      lang: 'zh-Hans', title: '网站信息', intro: '了解计分数据如何存储、网站如何运作，以及如何联系项目维护者。', back: '返回计分板', language: '语言', updated: '更新日期：2026-10-15', nav: '页面章节',
       sections: {
         privacy: { title: '隐私说明', parts: [
           ['存储的数据', '所有计分板的名称、组别、分数、回合、计时器、计分规则与最近 200 条分数变更记录保存在当前浏览器的 localStorage（scoreboard.collection.v1）。旧版数据会从 scoreboard.v1 迁移。语言偏好另存于 scoreboard.language。离线功能会在浏览器中缓存网站文件。本站没有账户，也不会将计分数据发送到项目自己的服务器。'],
           ['导入、导出和删除', '导入的 JSON 由浏览器在本地读取，并替换当前选中的计分板；每次导出 JSON 或 PNG 仅包含当前选中的计分板。若您自行分享导出文件，接收者将能看到其中内容。侧边栏的“清除所有本地计分板数据”会删除所有计分板并保留语言设置。清除浏览器网站数据也会移除语言设置和离线缓存。'],
-          ['主机和外部链接', '网站托管于 Cloudflare Pages。Cloudflare 可能为连接、安全及服务运行处理技术数据；详情请参考其隐私和 Cookie 文件。只有点击 GitHub 链接时，浏览器才会前往 GitHub。网站程序目前没有分析追踪、广告、第三方嵌入或远程字体。']
-        ], links: [['Cloudflare 隐私政策', 'https://www.cloudflare.com/privacypolicy/']] },
+          ['网址与本地数据', '不同网站网址使用各自的浏览器存储空间。从旧网址改用 GitHub Pages 网址时，组别与分数不会自动迁移；需要保留数据时，请先在旧站逐一导出 JSON，再到新站导入。'],
+          ['主机和外部链接', '网站托管于 GitHub Pages。GitHub 可能为提供网站及维护安全处理连接等技术数据；详情请参考 GitHub 隐私声明。网站程序目前没有分析追踪、广告、第三方嵌入或远程字体。']
+        ], links: [['GitHub 隐私声明', 'https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement']] },
         terms: { title: '使用条款', parts: [
           ['使用方式', 'Scoreboard 是免费的活动计分工具。请自行确认输入内容的准确性及使用权限，并在需要保留记录时导出 JSON 备份。'],
           ['服务状态', '网站和功能可能更新或暂时无法使用。本地数据受浏览器设置、清除网站数据和设备状态影响；请勿将其作为唯一备份。'],
@@ -40,8 +42,8 @@
         ] },
         cookies: { title: 'Cookie 说明', parts: [
           ['网站程序', '当前计分板程序不设置 Cookie，而使用 localStorage 保存计分数据和语言偏好，也未加入分析或广告追踪程序。'],
-          ['托管服务', 'Cloudflare 可能根据启用的安全功能设置必要的 Cookie。Cloudflare 文档列出相关 Cookie 及其用途；实际情况可能随托管设置变化。']
-        ], links: [['Cloudflare Cookie 文档', 'https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/']] },
+          ['托管服务', '网站托管于 GitHub Pages；GitHub 的 Cookie 使用和数据处理方式请参考其官方文档。实际 Cookie 情况可能随浏览器及服务设置变化。']
+        ], links: [['GitHub Cookie 文档', 'https://docs.github.com/en/site-policy/privacy-policies/github-cookies']] },
         about: { title: '关于项目', parts: [
           ['维护和联系', '这是由 GitHub 账号 easonlin2013927 维护的公开计分板项目。项目未提供公司名称、地址或法人身份，因此这里不虚构公司信息。功能和数据处理问题可在 GitHub Issues 反馈。'],
           ['素材', '网站界面的图标和项目文档中的插图由此项目提供。素材来源与后续使用注意事项记录在仓库的 ASSET_NOTES.md。']
@@ -49,13 +51,14 @@
       }
     },
     en: {
-      lang: 'en', title: 'Site information', intro: 'How scoreboard data is stored, how this site works, and how to contact the project maintainer.', back: 'Back to scoreboard', language: 'Language', updated: 'Updated: 2026-10-14', nav: 'On this page',
+      lang: 'en', title: 'Site information', intro: 'How scoreboard data is stored, how this site works, and how to contact the project maintainer.', back: 'Back to scoreboard', language: 'Language', updated: 'Updated: 2026-10-15', nav: 'On this page',
       sections: {
         privacy: { title: 'Privacy', parts: [
           ['Data stored', 'All board titles, team names, scores, rounds, timers, scoring rules and the latest 200 score changes are saved in this browser’s localStorage (scoreboard.collection.v1). Older data is migrated from scoreboard.v1. Your language choice is stored separately as scoreboard.language. The offline feature caches site files in the browser. There are no accounts, and the site does not send scoreboard data to a project-operated server.'],
           ['Import, export and deletion', 'Imported JSON is read locally in your browser and replaces the selected board. Each JSON or PNG export contains only the selected board. Anyone you choose to share an export with can read its contents. “Clear all local scoreboard data” in the sidebar removes every board while retaining your language choice. Clearing browser site data also removes the language setting and offline cache.'],
-          ['Hosting and external links', 'Cloudflare Pages hosts this site. Cloudflare may process technical connection and security data to operate its service; see its privacy and cookie documents. Your browser visits GitHub only after you click a GitHub link. The site code currently has no analytics, advertising, third-party embeds or remote fonts.']
-        ], links: [['Cloudflare Privacy Policy', 'https://www.cloudflare.com/privacypolicy/']] },
+          ['Site address and local data', 'Browser storage is separate for each website address. Moving from the old address to GitHub Pages does not automatically transfer boards or scores. To keep them, export each board as JSON on the old site and import it on the new site.'],
+          ['Hosting and external links', 'GitHub Pages hosts this site. GitHub may process technical connection data to serve and secure it; see its privacy statement. The site code currently has no analytics, advertising, third-party embeds or remote fonts.']
+        ], links: [['GitHub Privacy Statement', 'https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement']] },
         terms: { title: 'Terms of use', parts: [
           ['Using the tool', 'Scoreboard is a free event scoring tool. You are responsible for checking the accuracy of your entries and your right to use them. Export a JSON backup when you need to keep a record.'],
           ['Availability', 'The site and its features may change or be temporarily unavailable. Browser settings, site-data clearing and device conditions can affect local data. Keep a separate backup for important records.'],
@@ -63,8 +66,8 @@
         ] },
         cookies: { title: 'Cookies', parts: [
           ['Site code', 'The scoreboard code currently sets no cookies. It uses localStorage for scoreboard data and language preference, with no analytics or advertising trackers.'],
-          ['Hosting provider', 'Cloudflare may set necessary cookies depending on enabled security features. Its documentation describes those cookies and their purposes. Actual behavior can change with hosting configuration.']
-        ], links: [['Cloudflare cookie documentation', 'https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/']] },
+          ['Hosting provider', 'GitHub Pages hosts the site. See GitHub’s documentation for its cookie practices and data handling. Actual cookies may vary with browser and service settings.']
+        ], links: [['GitHub cookie documentation', 'https://docs.github.com/en/site-policy/privacy-policies/github-cookies']] },
         about: { title: 'About this project', parts: [
           ['Maintainer and contact', 'This public scoreboard project is maintained by the GitHub account easonlin2013927. No company name, address or legal entity details have been provided, so none are asserted here. Please report feature or data-handling questions through GitHub Issues.'],
           ['Assets', 'The interface icons and documentation illustrations are included with this project. Asset provenance and future-use notes are recorded in ASSET_NOTES.md in the repository.']
@@ -72,13 +75,14 @@
       }
     },
     ja: {
-      lang: 'ja', title: 'サイト情報', intro: 'スコアデータの保存方法、サイトの仕組み、管理者への連絡方法を説明します。', back: 'スコアボードに戻る', language: '言語', updated: '更新日：2026-10-14', nav: 'ページ内の項目',
+      lang: 'ja', title: 'サイト情報', intro: 'スコアデータの保存方法、サイトの仕組み、管理者への連絡方法を説明します。', back: 'スコアボードに戻る', language: '言語', updated: '更新日：2026-10-15', nav: 'ページ内の項目',
       sections: {
         privacy: { title: 'プライバシー', parts: [
           ['保存するデータ', 'すべてのボード名、グループ名、得点、ラウンド、タイマー、得点ルールと直近 200 件の変更履歴は現在のブラウザーの localStorage（scoreboard.collection.v1）に保存されます。旧データは scoreboard.v1 から移行されます。言語設定は scoreboard.language に別途保存されます。オフライン機能はサイトのファイルをブラウザーにキャッシュします。アカウントはなく、得点データをプロジェクト運営のサーバーに送信しません。'],
           ['読み込み・書き出し・削除', '読み込んだ JSON はブラウザー内で処理され、選択中のボードを置き換えます。JSON と PNG の書き出しは選択中のボードだけが対象です。共有したファイルの内容は受信者が確認できます。サイドバーの「端末の全ボードデータを消去」で全ボードを削除し、言語設定は残せます。ブラウザーのサイトデータを消去すると言語設定とオフラインキャッシュも消えます。'],
-          ['ホスティングと外部リンク', 'このサイトは Cloudflare Pages で配信されます。Cloudflare はサービスの運営やセキュリティのために接続情報などを処理する場合があります。詳細は同社のプライバシーと Cookie の文書をご覧ください。GitHub への移動はリンクをクリックした場合のみです。現在のサイトコードには解析、広告、外部埋め込み、外部フォントはありません。']
-        ], links: [['Cloudflare プライバシーポリシー', 'https://www.cloudflare.com/privacypolicy/']] },
+          ['サイトの URL と保存データ', 'ブラウザーの保存領域はサイトの URL ごとに分かれます。旧 URL から GitHub Pages に移っても、ボードや得点は自動移行されません。保存が必要な場合は旧サイトで各ボードを JSON に書き出し、新サイトで読み込んでください。'],
+          ['ホスティングと外部リンク', 'このサイトは GitHub Pages で配信されます。GitHub は配信とセキュリティーのため接続情報などを処理する場合があります。詳しくは GitHub のプライバシーに関する声明をご覧ください。現在のサイトコードには解析、広告、外部埋め込み、外部フォントはありません。']
+        ], links: [['GitHub プライバシーに関する声明', 'https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement']] },
         terms: { title: '利用条件', parts: [
           ['利用方法', 'Scoreboard は無料のイベント得点管理ツールです。入力内容の正確性と利用権限をご確認ください。記録を残す場合は JSON でバックアップしてください。'],
           ['サービスの状態', 'サイトや機能は変更されたり一時的に利用できなくなったりする場合があります。ブラウザーの設定、サイトデータの消去、端末の状態によってローカルデータは影響を受けます。重要な記録は別途保存してください。'],
@@ -86,8 +90,8 @@
         ] },
         cookies: { title: 'Cookie', parts: [
           ['サイトのコード', '現在のスコアボードのコードは Cookie を設定しません。スコアデータと言語設定には localStorage を使用し、解析や広告の追跡コードは含みません。'],
-          ['ホスティング事業者', 'Cloudflare は有効なセキュリティ機能に応じて必要な Cookie を設定する場合があります。種類と用途は Cloudflare の文書をご覧ください。実際の動作はホスティング設定により変わることがあります。']
-        ], links: [['Cloudflare Cookie 文書', 'https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/']] },
+          ['ホスティング事業者', 'このサイトは GitHub Pages で配信されます。Cookie とデータの取り扱いについては GitHub の公式文書をご覧ください。実際の Cookie はブラウザーやサービスの設定によって異なる場合があります。']
+        ], links: [['GitHub Cookie 文書', 'https://docs.github.com/en/site-policy/privacy-policies/github-cookies']] },
         about: { title: 'プロジェクトについて', parts: [
           ['管理者と連絡先', 'この公開スコアボードプロジェクトは GitHub アカウント easonlin2013927 が管理しています。会社名、住所、法人情報は提供されていないため、ここには記載していません。機能やデータの取り扱いについては GitHub Issues でお問い合わせください。'],
           ['素材', '画面内のアイコンと文書のイラストはこのプロジェクトに含まれます。素材の出所と今後の利用上の注意はリポジトリの ASSET_NOTES.md に記録しています。']

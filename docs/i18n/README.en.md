@@ -8,7 +8,7 @@
 
 <p align="center">A lightweight scoreboard for creating groups, tracking points, and keeping every result.</p>
 
-<p align="center"><a href="https://score-board-4gz.pages.dev/"><img src="https://img.shields.io/badge/OPEN%20LIVE%20DEMO-Cloudflare%20Pages-3aa9b5?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Open the live scoreboard" /></a></p>
+<p align="center"><a href="https://easonlin2013927.github.io/score-board/"><img src="https://img.shields.io/badge/OPEN%20LIVE%20DEMO-GitHub%20Pages-3aa9b5?style=for-the-badge&logo=github&logoColor=white" alt="Open the live scoreboard" /></a></p>
 
 > The app supports Traditional Chinese, Simplified Chinese, English, and Japanese. Switch languages in the top bar; names and scores stay as you entered them.
 
@@ -34,7 +34,9 @@
 
 ## 🎮 Get started
 
-**Online:** Open **[score-board-4gz.pages.dev](https://score-board-4gz.pages.dev/)**. No account or installation is required.
+**Online:** Open **[easonlin2013927.github.io/score-board](https://easonlin2013927.github.io/score-board/)**. No account or installation is required.
+
+**Moving to this URL:** Browser storage is separate for each site address. If you used the old address, export each board as JSON there and import it here.
 
 **Locally:**
 
@@ -60,21 +62,13 @@ Importing replaces the current board and scores after a confirmation prompt. If 
 
 ## 🔒 Data and launch information
 
-Scoreboard data stays in the current browser. “Clear all local scoreboard data” removes every board; export each one as JSON first if needed. Each import or export handles only the selected board. Offline installation requires HTTPS or a local server; opening `index.html` directly still supports ordinary scoring. The site has [privacy, terms, cookies and project information](https://score-board-4gz.pages.dev/legal.html). The repository also has a [launch checklist](../../LAUNCH_CHECKLIST.md) and [asset notes](../../ASSET_NOTES.md).
+Scoreboard data stays in the current browser. “Clear all local scoreboard data” removes every board; export each one as JSON first if needed. Each import or export handles only the selected board. Offline installation requires HTTPS or a local server; opening `index.html` directly still supports ordinary scoring. The site has [privacy, terms, cookies and project information](https://easonlin2013927.github.io/score-board/legal.html). The repository also has a [launch checklist](../../LAUNCH_CHECKLIST.md) and [asset notes](../../ASSET_NOTES.md).
 
-## ☁️ Deploy to Cloudflare Pages
+## 🚀 Deploy to GitHub Pages
 
-This repository is connected to Cloudflare Pages; pushes to `main` deploy automatically. To deploy your own copy, choose **Workers & Pages → Create application → Pages → Connect to Git**, select this repository, and use these settings:
+This repository publishes automatically from the `main` branch at `/(root)` using GitHub Pages. To host your own copy, fork the repository, then open **Settings → Pages → Build and deployment**. Choose **Deploy from a branch**, `main`, and `/(root)`, then click **Save**. This static site needs no build command.
 
-| Setting | Value |
-| :--- | :--- |
-| Production branch | `main` |
-| Framework preset | `None` |
-| Build command | Leave blank |
-| Build output directory | Repository root `/`; if `/` is already shown as a prefix, leave the input blank |
-| Root directory and environment variables | Leave blank |
-
-To add a domain later, open **Custom domains → Set up a domain** in the Pages project. See [Cloudflare's custom domain guide](https://developers.cloudflare.com/pages/configuration/custom-domains/) for root domain and subdomain DNS requirements.
+You can later add your own domain in **Settings → Pages → Custom domain** and configure DNS using [GitHub's custom domain guide](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
 
 ## 🧩 Project structure
 
